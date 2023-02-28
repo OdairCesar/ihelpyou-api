@@ -1,0 +1,86 @@
+{
+    "terminal.integrated.fontSize": 14,
+  
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.startupEditor": "newUntitledFile",
+  
+    "polacode.backgroundColor": "#6633CC",
+  
+    "editor.tabSize": 2,
+    "editor.fontSize": 16,
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+    "editor.semanticHighlighting.enabled": false,
+    "editor.parameterHints.enabled": false,
+  
+    "explorer.compactFolders": false,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+  
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true, 
+    },
+  
+    "files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+    },
+    "files.associations": {
+      ".sequelizerc": "javascript",
+      ".stylelintrc": "json",
+      ".prettierrc": "json",
+    },
+  
+    "[prisma]": {
+      "editor.formatOnSave": true
+    },
+  
+    "window.zoomLevel": 0,
+  
+    "emmet.syntaxProfiles": { "javascript": "jsx" },
+    "emmet.includeLanguages": { "javascript": "javascriptreact" },
+  
+    "gitlens.codeLens.recentChange.enabled": false,
+    "gitlens.codeLens.authors.enabled": false,
+    "gitlens.codeLens.enabled": false,
+  
+    "git.enableSmartCommit": true,
+    
+    "liveshare.featureSet": "insiders",
+  
+    "typescript.tsserver.log": "verbose",
+    "typescript.suggest.autoImports": true,
+    
+    "javascript.suggest.autoImports": true,
+    
+    "screencastMode.onlyKeyboardShortcuts": true,
+    
+    "material-icon-theme.activeIconPack": "nest",
+    "material-icon-theme.folders.associations": {
+      "infra": "app",
+      "entities": "class",
+      "domain": "class",
+      "schemas": "class",
+      "typeorm": "database",
+      "repositories": "mappings",
+      "http": "container",
+      "migrations": "tools",
+      "modules": "components",
+      "implementations": "core",
+      "dtos": "typescript",
+      "fakes": "mock",
+      "websockets": "pipe",
+      "photos": "pipe",
+      "grpc": "pipe",
+      "providers": "include",
+      "subscribers": "messages",
+      "useCases": "controller",
+      "kafka": "scripts",
+      "mappers": "meta",
+      "_shared": "shared",
+      "eslint-config": "tools",
+    }
+  }
