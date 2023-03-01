@@ -38,7 +38,7 @@
       "editor.formatOnSave": true
     },
   
-    "window.zoomLevel": 0,
+    "window.zoomLevel": 1,
   
     "emmet.syntaxProfiles": { "javascript": "jsx" },
     "emmet.includeLanguages": { "javascript": "javascriptreact" },
