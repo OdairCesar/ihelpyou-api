@@ -1,16 +1,17 @@
 import { uuid } from "uuidv4";
 
-export class BankAnalisys {
+export class BankAnalysis {
   
   public readonly id: string
   public maximo: string
   public minimo: string
-  public av_day: 'Admin' | 'User' | 'Company'
-  public av_week: string
-  public av_month: string
-  public av_service: string
+  public avDay: 'Admin' | 'User' | 'Company'
+  public avWeek: string
+  public avMonth: string
+  public avService: string
+  public idBank: string
 
-  constructor(props: Omit<BankAnalisys, 'id'>, id?: string) {
+  constructor(props: Omit<BankAnalysis, 'id'>, id?: string) {
     Object.assign(this, props)
 
     if (!id) {

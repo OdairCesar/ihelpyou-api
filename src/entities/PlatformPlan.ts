@@ -1,6 +1,6 @@
 import { uuid } from "uuidv4";
 
-export class PlatformBenefit {
+export class PlatformPlan {
 
   public readonly id: string
   public name: string
@@ -8,9 +8,9 @@ export class PlatformBenefit {
   public period: string
   public limit: string
   public value: string
-  public id_platform_benefit: string
+  public idPlatformBenefit: string
 
-  constructor(props: Omit<PlatformBenefit, 'id'>, id?: string) {
+  constructor(props: Omit<PlatformPlan, 'id'>, id?: string) {
     Object.assign(this, props)
     
     if (!id) {

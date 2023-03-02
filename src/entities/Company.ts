@@ -7,8 +7,8 @@ export class Company {
   public mei: number
   public cnpj: number
   public cpf: number
-  public id_base_registration: string
-  public id_status: string
+  public idBaseRegistration: string
+  public idStatus: string
 
   constructor(props: Omit<Company, 'id'>, id?: string) {
     Object.assign(this, props)

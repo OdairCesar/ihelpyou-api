@@ -6,8 +6,8 @@ export class PlatformBenefit {
   public title: string
   public description: string
   public stars: number
-  public id_user: string
-  public id_company_service: string
+  public idUser: string
+  public idCompanyService: string
 
   constructor(props: Omit<PlatformBenefit, 'id'>, id?: string) {
     Object.assign(this, props)

@@ -10,8 +10,8 @@ export class BaseRegistration {
   public address_number: number
   public neighborhood: string 
   public active: boolean
-  public id_city: string
-  public id_auth: string
+  public idCity: string
+  public idAuth: string
 
   constructor(props: Omit<BaseRegistration, 'id'>, id?: string) {
     Object.assign(this, props)

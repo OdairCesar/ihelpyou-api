@@ -3,11 +3,11 @@ import { uuid } from "uuidv4";
 export class CompanyStatus {
   
   public readonly id: string
-  public pago: boolean
+  public paid: boolean
   public restriction: boolean
-  public accession_date: Date
-  public active: boolean
-  public id_plan: string
+  public dateAdmission: Date
+  public activated: boolean
+  public idPlan: string
 
   constructor(props: Omit<CompanyStatus, 'id'>, id?: string) {
     Object.assign(this, props)
