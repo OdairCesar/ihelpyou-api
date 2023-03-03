@@ -1,7 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
+import { BankCompanyORM } from "./BankCompanyORM"
+import { CompanyServiceORM } from "./CompanyServiceORM"
+import { UserCardORM } from "./UserCardORM"
+import { UserORM } from "./UserORM"
 
 @Entity('order')
-export class Order {
+export class OrderORM {
   
   @PrimaryGeneratedColumn()
   id: string
@@ -18,17 +22,17 @@ export class Order {
   @Column()
   sttPayment: string
   
+  @ManyToOne(type => BankCompanyORM, orders => OrderORM)
+  banksCompany: BankCompanyORM
   
-  idBankCompany: string
+  @ManyToOne(type => UserCardORM, orders => OrderORM)
+  userCard: UserCardORM
   
+  @ManyToOne(type => UserORM, orders => OrderORM)
+  user: UserORM
   
-  idUserCard: string
-  
-  
-  idUser: string
-  
-  
-  idCompanyService: string
+  @ManyToOne(type => CompanyServiceORM, orders => OrderORM)
+  companyService: CompanyServiceORM
   
   
   idOrderEvalution: string

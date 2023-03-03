@@ -1,6 +1,7 @@
 import { BankAnalysisORM } from "./BankAnalysisORM";
 import { CompanyORM } from "./CompanyORM";
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { OrderORM } from "./OrderORM";
 
 @Entity('bank_company')
 export class BankCompanyORM {
@@ -34,4 +35,7 @@ export class BankCompanyORM {
 
   @OneToMany(type => BankAnalysisORM, bankCompany => BankCompanyORM)
   bankAnalyzes: BankAnalysisORM[]
+
+  @OneToMany(type => OrderORM, bankCompany => BankCompanyORM)
+  orders: OrderORM[]
 }

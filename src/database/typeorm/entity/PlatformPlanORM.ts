@@ -1,7 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { CompanyStatusORM } from "./CompanyStatusORM";
 
 @Entity('platform_plan')
-export class PlatformPlan {
+export class PlatformPlanORM {
 
   @PrimaryGeneratedColumn()
   id: string
@@ -21,5 +22,6 @@ export class PlatformPlan {
   @Column()
   value: string
   
-  idPlatformBenefit: string
+  @OneToMany(type => CompanyStatusORM, platformPlan => PlatformPlanORM)
+  companiesStatus: CompanyStatusORM[]
 }

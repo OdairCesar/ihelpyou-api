@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
+import { PlatformPlanORM } from "./PlatformPlanORM"
 
 @Entity('company_status')
 export class CompanyStatusORM {
@@ -18,6 +19,6 @@ export class CompanyStatusORM {
   @Column()
   activated: boolean
   
-
-  idPlan: string
+  @ManyToOne(type => PlatformPlanORM, companiesStatus => CompanyStatusORM)
+  plan: PlatformPlanORM
 }
