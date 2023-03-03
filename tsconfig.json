@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",                         
+    "strictPropertyInitialization": false, 
+    "moduleResolution": "node",           
+    "esModuleInterop": true,  
+    "experimentalDecorators": true,       
+    "emitDecoratorMetadata": true,   
+    "skipLibCheck": true,                    
+    "forceConsistentCasingInFileNames": true  
+  }
+}

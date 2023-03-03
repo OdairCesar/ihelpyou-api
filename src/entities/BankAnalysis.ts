@@ -2,7 +2,7 @@ import { uuid } from "uuidv4";
 
 export class BankAnalysis {
   
-  public readonly id: string
+  public readonly id: any
   public maximo: string
   public minimo: string
   public avDay: 'Admin' | 'User' | 'Company'
@@ -13,7 +13,7 @@ export class BankAnalysis {
 
   constructor(props: Omit<BankAnalysis, 'id'>, id?: string) {
     Object.assign(this, props)
-
+    
     if (!id) {
       this.id = uuid()
     }

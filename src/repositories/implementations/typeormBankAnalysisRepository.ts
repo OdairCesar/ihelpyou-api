@@ -1,4 +1,4 @@
-import { BankAnalysis } from "../entities/BankAnalysis"
+import { BankAnalysis } from "../../entities/BankAnalysis"
 
 export interface IBankAnalysisRepository {
   findById(id: string): Promise<BankAnalysis>
