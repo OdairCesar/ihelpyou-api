@@ -5,7 +5,7 @@ export interface IBankCompanyRepository {
   findByBank(bank: number): Promise<Array<BankCompany>>
   findByCPF(cpf: number): Promise<Array<BankCompany>>
   findByCNPJ(cnpj: number): Promise<Array<BankCompany>>
-  findByAgency(agencia: number): Promise<Array<BankCompany>>
+  findByAgency(agency: number): Promise<Array<BankCompany>>
   findByAccount(account: number): Promise<Array<BankCompany>> 
   findByPix(pix: string): Promise<BankCompany>
   findByIdCompany(idCompany: string): Promise<Array<BankCompany>>

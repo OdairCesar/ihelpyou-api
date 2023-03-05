@@ -5,8 +5,8 @@ export interface IBaseRegistrationRepository {
   findByName(name: string): Promise<Array<BaseRegistration>>
   findByFone(fone: number): Promise<BaseRegistration>
   findByActived(actived: boolean): Promise<Array<BaseRegistration>>
-  findByIdCidade(idCidade: string): Promise<Array<BaseRegistration>>
-  findByIdLogin(idLogin: string): Promise<BaseRegistration>
+  findByIdCidade(idCity: string): Promise<Array<BaseRegistration>>
+  findByIdLogin(idAuth: string): Promise<BaseRegistration>
   insert(baseRegistration: BaseRegistration): Promise<void>
   update(baseRegistration: BaseRegistration): Promise<void>
 }
