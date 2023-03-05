@@ -2,16 +2,15 @@ import { uuid } from "uuidv4";
 
 export class Order {
 
-  public readonly id: string
+  public readonly id: any
   public dataStart: Date
   public dataFinish: Date
-  public sttService: string
-  public sttPayment: string
-  public idBankCompany: string
-  public idUserCard: string
-  public idUser: string
-  public idCompanyService: string
-  public idOrderEvalution: string
+  public sttService: 'Cancelado' | 'Concluido' | 'Em andamento' | 'Confirmado' | 'Esperando Confirmação'
+  public sttPayment: 'Cancelado' | 'Confirmado' | 'Aguardado'
+  public idBankCompany: any
+  public idUserCard: any
+  public idUser: any
+  public idCompanyService: any
 
   constructor(props: Omit<Order, 'id'>, id?: string) {
     Object.assign(this, props)

@@ -2,13 +2,14 @@ import { uuid } from "uuidv4";
 
 export class ServiceAnalysis {
 
-  public readonly id: string
+  public readonly id: any
   public amountAvgDay: number
   public amountAvgWeek: number
   public amountAvgMonth: number
   public timeMdPerUser: string
   public views: number
   public purchaseCancelled: number
+  public idCompanyService: any
 
   constructor(props: Omit<ServiceAnalysis, 'id'>, id?: string) {
     Object.assign(this, props)

@@ -2,12 +2,11 @@ import { uuid } from "uuidv4";
 
 export class PlatformBenefit {
 
-  public readonly id: string
-  public title: string
+  public readonly id: any
+  public name: string
   public description: string
-  public stars: number
-  public idUser: string
-  public idCompanyService: string
+  public amount: number
+  public idPlan: any
 
   constructor(props: Omit<PlatformBenefit, 'id'>, id?: string) {
     Object.assign(this, props)

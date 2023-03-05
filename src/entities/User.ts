@@ -2,9 +2,9 @@ import { uuid } from "uuidv4";
 
 export class User {
 
-  public readonly id: string
+  public readonly id: any
   public cpf: number
-  public idBaseRegistration: string
+  public idBaseRegistration: any
 
   constructor(props: Omit<User, 'id'>, id?: string) {
     Object.assign(this, props)

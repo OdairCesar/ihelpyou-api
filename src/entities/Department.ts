@@ -2,7 +2,7 @@ import { uuid } from "uuidv4";
 
 export class Department {
 
-  public readonly id: string
+  public readonly id: any
   public name: string
   public description: string
   public image: string

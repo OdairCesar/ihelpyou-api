@@ -2,16 +2,16 @@ import { uuid } from "uuidv4";
 
 export class BaseRegistration {
   
-  public readonly id: string
+  public readonly id: any
   public name: string
   public fone: number
   public image: string
   public address: string
-  public address_number: number
+  public addressNumber: number
   public neighborhood: string 
   public active: boolean
-  public idCity: string
-  public idAuth: string
+  public idCity: any
+  public idAuth: any
 
   constructor(props: Omit<BaseRegistration, 'id'>, id?: string) {
     Object.assign(this, props)

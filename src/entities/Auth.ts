@@ -6,8 +6,8 @@ export class Auth {
   public email: string
   public password: string
   public type: 'Admin' | 'User' | 'Company'
-  public google: string
-  public facebook: string
+  public google?: string
+  public facebook?: string
 
   constructor(props: Omit<Auth, 'id'>, id?: string) {
     Object.assign(this, props)
