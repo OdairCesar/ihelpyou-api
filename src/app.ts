@@ -1,4 +1,5 @@
-import express from "express"
+import "reflect-metadata"
+import express = require("express")
 import { json } from "body-parser"
 import { routerUser } from "./routes/User"
 
