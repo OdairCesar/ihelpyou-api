@@ -5,15 +5,16 @@ import { StateORM } from "./StateORM"
 @Entity('city')
 export class CityORM {
   
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   id: string
 
   @Column()
   city: string
 
-  @ManyToOne(type => StateORM, cities => CityORM)
-  state: StateORM
-
   @OneToMany(type => BaseRegistrationORM, city => CityORM)
   BaseRegistrations: BaseRegistrationORM[]
+
+  @ManyToOne(type => StateORM, cities => CityORM)
+  idState: StateORM
+
 }

@@ -1,13 +1,14 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 import { BankCompanyORM } from "./BankCompanyORM"
 import { CompanyServiceORM } from "./CompanyServiceORM"
 import { UserCardORM } from "./UserCardORM"
 import { UserORM } from "./UserORM"
+import { OrderEvaluationORM } from "./OrderEvaluationORM"
 
 @Entity('order')
 export class OrderORM {
   
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   id: string
   
   @Column()
@@ -17,23 +18,24 @@ export class OrderORM {
   dataFinish: Date
   
   @Column()
-  sttService: string
+  sttService: 'Cancelado' | 'Concluido' | 'Em andamento' | 'Confirmado' | 'Esperando Confirmação'
   
   @Column()
-  sttPayment: string
+  sttPayment: 'Cancelado' | 'Confirmado' | 'Aguardado'
+  
+  @OneToMany(type => OrderEvaluationORM, order => OrderORM)
+  orderReviews: OrderEvaluationORM[]
   
   @ManyToOne(type => BankCompanyORM, orders => OrderORM)
-  banksCompany: BankCompanyORM
+  idBankCompany: BankCompanyORM
   
   @ManyToOne(type => UserCardORM, orders => OrderORM)
-  userCard: UserCardORM
+  idUserCard: UserCardORM
   
   @ManyToOne(type => UserORM, orders => OrderORM)
-  user: UserORM
+  idUser: UserORM
   
   @ManyToOne(type => CompanyServiceORM, orders => OrderORM)
-  companyService: CompanyServiceORM
+  idCompanyService: CompanyServiceORM
   
-  
-  idOrderEvalution: string
 }

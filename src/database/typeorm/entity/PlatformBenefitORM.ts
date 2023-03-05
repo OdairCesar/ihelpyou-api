@@ -1,21 +1,22 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
+import { PlatformPlanORM } from "./PlatformPlanORM"
 
 @Entity('platform_benefit')
-export class PlatformBenefit {
+export class PlatformBenefitORM {
 
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   id: string
   
   @Column()
-  title: string
+  name: string
   
   @Column()
   description: string
   
   @Column()
-  stars: number
+  amount: number
 
-  idUser: string
-
-  idCompanyService: string
+  @ManyToOne(type => PlatformBenefitORM, platformBenefits => PlatformBenefitORM)
+  idPlan: PlatformPlanORM
+  
 }

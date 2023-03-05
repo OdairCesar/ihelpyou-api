@@ -1,11 +1,13 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm"
 import { CityORM } from "./CityORM"
 import { AuthORM } from "./AuthORM"
+import { CompanyORM } from "./CompanyORM"
+import { UserORM } from "./UserORM"
 
 @Entity('base_registration')
 export class BaseRegistrationORM {
   
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   id: string
 
   @Column()
@@ -29,10 +31,17 @@ export class BaseRegistrationORM {
   @Column()
   active: boolean
 
-  @ManyToOne(type => CityORM, baseRegistrations => BaseRegistrationORM)
-  city: CityORM
+  @OneToOne(type => CompanyORM, baseRegistration => BaseRegistrationORM)
+  company: CompanyORM
+
+  @OneToOne(type => UserORM, baseRegistration => BaseRegistrationORM)
+  user: UserORM
 
   @OneToOne(type => AuthORM, baseRegistration => BaseRegistrationORM)
   @JoinColumn()
-  auth: AuthORM
+  idAuth: AuthORM
+
+  @ManyToOne(type => CityORM, baseRegistrations => BaseRegistrationORM)
+  idCity: CityORM
+  
 }

@@ -4,7 +4,7 @@ import { CompanyServiceORM } from "./CompanyServiceORM";
 @Entity('service_analysis')
 export class ServiceAnalysisORM {
   
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   id: string
   
   @Column()
@@ -25,6 +25,7 @@ export class ServiceAnalysisORM {
   @Column()
   purchaseCancelled: number
 
-  @ManyToOne(type => CompanyServiceORM, serviceAnalyzesORM => ServiceAnalysisORM)
-  companyService: CompanyServiceORM
+  @ManyToOne(type => CompanyServiceORM, serviceAnalyzes => ServiceAnalysisORM)
+  idCompanyService: CompanyServiceORM
+  
 }

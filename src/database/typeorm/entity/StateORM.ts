@@ -1,9 +1,10 @@
-import { Column, OneToMany, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 import { CityORM } from "./CityORM"
 
+@Entity('state')
 export class StateORM {
   
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   id: string
 
   @Column()
@@ -14,4 +15,5 @@ export class StateORM {
 
   @OneToMany(type => CityORM, state => StateORM)
   BaseRegistrations: CityORM[]
+
 }

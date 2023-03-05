@@ -1,10 +1,11 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 import { OrderORM } from "./OrderORM"
+import { UserORM } from "./UserORM"
 
 @Entity('user_card')
 export class UserCardORM {
 
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   id: string
   
   @Column()
@@ -18,9 +19,11 @@ export class UserCardORM {
   
   @Column()
   securityCode: number
-  
-  idUser: string
 
   @OneToMany(type => OrderORM, userCard => UserCardORM)
   orders: OrderORM[]
+  
+  @ManyToOne(type => UserORM, userCards => UserCardORM)
+  idUser: UserORM
+
 }

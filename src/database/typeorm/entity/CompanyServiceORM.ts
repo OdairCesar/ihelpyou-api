@@ -8,7 +8,7 @@ import { OrderORM } from "./OrderORM"
 @Entity('company_service')
 export class CompanyServiceORM {
   
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   id: string
   
   @Column()
@@ -28,6 +28,9 @@ export class CompanyServiceORM {
   
   @Column()
   value: number
+
+  @OneToMany(type => OrderORM, companyService => CompanyServiceORM)
+  orders: OrderORM[]
   
   @OneToMany(type => ServiceAnalysisORM, companyService => CompanyServiceORM)
   serviceAnalyzes: ServiceAnalysisORM[]
@@ -36,11 +39,9 @@ export class CompanyServiceORM {
   orderReviews: OrderEvaluationORM[]
   
   @ManyToOne(type => DepartmentORM, companyServices => CompanyServiceORM)
-  department: DepartmentORM
+  idDepartment: DepartmentORM
   
   @ManyToOne(type => CompanyORM, companyServices => CompanyServiceORM)
-  company: CompanyORM
+  idCompany: CompanyORM
 
-  @OneToMany(type => OrderORM, companyService => CompanyServiceORM)
-  orders: OrderORM[]
 }

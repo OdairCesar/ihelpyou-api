@@ -1,24 +1,30 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
 import { CompanyServiceORM } from "./CompanyServiceORM"
+import { UserORM } from "./UserORM"
+import { OrderORM } from "./OrderORM"
 
 @Entity('order_evalution')
 export class OrderEvaluationORM {
 
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   id: string
   
   @Column()
   title: Date
   
   @Column()
-  description: Date
+  description: string
   
   @Column()
-  stars: string
+  amountStars: number
   
-  @Column()
-  idUser: string
+  @ManyToOne(type => UserORM, orderReviews => OrderEvaluationORM)
+  idUser: UserORM
+  
+  @ManyToOne(type => OrderORM, orderReviews => OrderEvaluationORM)
+  idOrder: OrderORM
   
   @ManyToOne(type => CompanyServiceORM, orderReviews => OrderEvaluationORM)
-  companyService: CompanyServiceORM
+  idCompanyService: CompanyServiceORM
+  
 }

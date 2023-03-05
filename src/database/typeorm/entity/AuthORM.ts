@@ -4,8 +4,8 @@ import { BaseRegistrationORM } from "./BaseRegistrationORM";
 @Entity('auth')
 export class AuthORM{
   
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
   
   @Column()
   email: string;
@@ -17,10 +17,10 @@ export class AuthORM{
   type: 'Admin' | 'User' | 'Company';
 
   @Column()
-  google: string;
+  google?: string;
 
   @Column()
-  facebook: string;
+  facebook?: string;
 
   @OneToOne(type => BaseRegistrationORM, auth => AuthORM)
   baseRegistration: BaseRegistrationORM

@@ -4,27 +4,25 @@ import { BankCompanyORM } from "./BankCompanyORM"
 @Entity('bank_analysis')
 export class BankAnalysisORM {
   
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   id: string
 
   @Column()
-  maximo: string
+  maximum: number
 
   @Column()
-  minimo: string
+  minimum: number
 
   @Column()
-  avDay: 'Admin' | 'User' | 'Company'
+  avDay: number
 
   @Column()
-  avWeek: string
+  avWeek: number
 
   @Column()
-  avMonth: string
-
-  @Column()
-  avService: string
+  avService: number
 
   @ManyToOne(type => BankCompanyORM, bankAnalyzes => BankAnalysisORM)
-  bank: BankCompanyORM
+  idBank: BankCompanyORM
+
 }
