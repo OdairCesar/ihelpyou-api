@@ -16,7 +16,7 @@ export class PlatformBenefitORM {
   @Column()
   amount: number
 
-  @ManyToOne(type => PlatformBenefitORM, platformBenefits => PlatformBenefitORM)
+  @ManyToOne(type => PlatformPlanORM, platformBenefits => PlatformBenefitORM)
   idPlan: PlatformPlanORM
   
 }

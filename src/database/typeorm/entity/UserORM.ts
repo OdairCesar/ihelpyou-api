@@ -4,7 +4,7 @@ import { OrderEvaluationORM } from "./OrderEvaluationORM";
 import { UserCardORM } from "./UserCardORM";
 import { BaseRegistrationORM } from "./BaseRegistrationORM";
 
-@Entity('user')
+@Entity()
 export class UserORM {
 
   @PrimaryGeneratedColumn("uuid")

@@ -7,11 +7,10 @@ export class CreateAuthController {
   ) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { name, email, password, type, google, facebook } = request.body
+    const { email, password, type, google, facebook } = request.body
 
     try{
       await this.createAuthUseCase.execute({
-        name,
         email,
         password,
         type,

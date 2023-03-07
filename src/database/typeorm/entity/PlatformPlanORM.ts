@@ -27,6 +27,6 @@ export class PlatformPlanORM {
   companiesStatus: CompanyStatusORM[]
 
   @OneToMany(type => PlatformBenefitORM, platformPlan => PlatformPlanORM)
-  platformBenfits: PlatformBenefitORM[]
+  platformBenefits: PlatformBenefitORM[]
   
 }
