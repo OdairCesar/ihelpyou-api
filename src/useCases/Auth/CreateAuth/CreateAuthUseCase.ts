@@ -3,26 +3,67 @@ import { Auth } from "../../../entities/Auth";
 import { ICreateAuthRequestDTO } from "./CreateAuthDTO";
 
 export class CreateAuthUseCase {
-  constructor (
-    private authRepository: IAuthRepository,
-  ) {}
+  constructor(private authRepository: IAuthRepository) {}
 
   async execute(data: ICreateAuthRequestDTO) {
-    const authEmailAlreadyExists = await this.authRepository.findByEmail(data.email)
-    if (authEmailAlreadyExists) throw new Error('User email already exists')
-
-    if (data.google) {
-      const authGoogleAlreadyExists = await this.authRepository.findByGoogle(data.google)
-      if (authGoogleAlreadyExists) throw new Error('User google already exists')
+    if (!await this.validExists(data.email)) {
+      throw Error("Usuario ja existente");
     }
 
-    if (data.facebook) {
-      const authFacebookAlreadyExists = await this.authRepository.findByGoogle(data.facebook)
-      if (authFacebookAlreadyExists) throw new Error('User google already exists')
+    if (!this.validEmail(data.email)) {
+      throw Error("Email invalido");
     }
 
-    const auth = new Auth(data)
+    if (!this.validConfirmPassword(data.password, data.confirmPassword)) {
+      throw Error("A senha de cnfirmação esta errada");
+    }
 
-    await this.authRepository.insert(auth)
+    if (!this.validPassword(data.password)) {
+      throw Error("A senha está fraca");
+    }
+
+    const auth = new Auth(data);
+
+    await this.authRepository.insert(auth);
+  }
+
+  async validExists(email) {
+    const authEmailAlreadyExists = await this.authRepository.findByEmail(email);
+
+    if (authEmailAlreadyExists) {
+      return false;
+    }
+
+    return true;
+  }
+
+  validConfirmPassword(password, confirmPassword) {
+    return password == confirmPassword
+  }
+
+  validEmail(email) {
+    const padrao = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    return padrao.test(email);
+  }
+
+  validPassword(password) {
+    const numberRule = /[0-9]/;
+    const specialCharacterRule = /[!@#$%^&*]/;
+    const capitalLetterRule = /[A-Z]/;
+
+    if (password.length < 8 || password.length > 16) {
+      return false;
+    }
+
+    if (
+      !numberRule.test(password) ||
+      !specialCharacterRule.test(password) ||
+      !capitalLetterRule.test(password)
+    ) {
+      return false;
+    }
+
+    return true;
   }
 }

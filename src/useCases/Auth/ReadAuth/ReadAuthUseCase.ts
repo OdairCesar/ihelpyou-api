@@ -8,7 +8,7 @@ export class ReadAuthUseCase {
   ) {}
 
   async execute(data: IReadAuthRequestDTO) {
-    let auth: Auth = null
+    let auth: Auth;
 
     if (data.id) {
       auth = await this.authRepository.findById(data.id)
@@ -19,6 +19,8 @@ export class ReadAuthUseCase {
     } else if (data.facebook) {
       auth = await this.authRepository.findByFacebook(data.facebook)
     }
+
+    auth.password = null
 
     if (auth) return auth
 

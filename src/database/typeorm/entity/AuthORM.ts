@@ -1,12 +1,11 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { BaseRegistrationORM } from "./BaseRegistrationORM";
 
-@Entity('auth')
-export class AuthORM{
-  
+@Entity("auth")
+export class AuthORM {
   @PrimaryGeneratedColumn("uuid")
   id: string;
-  
+
   @Column()
   email: string;
 
@@ -14,14 +13,14 @@ export class AuthORM{
   password: string;
 
   @Column()
-  type: 'Admin' | 'User' | 'Company';
+  type: "Admin" | "User" | "Company";
 
-  @Column()
-  google?: string;
+  @Column({ nullable: true })
+  google: string;
 
-  @Column()
-  facebook?: string;
+  @Column({ nullable: true })
+  facebook: string;
 
-  @OneToOne(type => BaseRegistrationORM, auth => AuthORM)
-  baseRegistration: BaseRegistrationORM
+  @OneToOne((type) => BaseRegistrationORM, (auth) => AuthORM)
+  baseRegistration: BaseRegistrationORM;
 }
