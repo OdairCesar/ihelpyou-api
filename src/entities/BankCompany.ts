@@ -9,7 +9,7 @@ export class BankCompany {
   public cnpj: number
   public agency: number
   public account: number
-  public pix: string
+  public pix?: string
   public idCompany: any
 
   constructor(props: Omit<BankCompany, 'id'>, id?: string) {

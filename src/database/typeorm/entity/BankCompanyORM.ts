@@ -27,7 +27,7 @@ export class BankCompanyORM {
   @Column()
   account: number
 
-  @Column()
+  @Column({ nullable: true})
   pix: string
 
   @OneToMany(type => BankAnalysisORM, bankCompany => BankCompanyORM)
