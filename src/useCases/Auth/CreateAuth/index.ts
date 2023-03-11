@@ -9,12 +9,12 @@ const typeormAuthRepository = new AuthRepository(
   dataSource.getRepository(AuthORM)
 )
 
-const createUserUseCase = new CreateAuthUseCase(
+const createAuthUseCase = new CreateAuthUseCase(
   typeormAuthRepository,
 )
 
 const createAuthController = new CreateAuthController(
-  createUserUseCase
+  createAuthUseCase
 )
 
-export { createUserUseCase, createAuthController }
+export { createAuthUseCase, createAuthController }

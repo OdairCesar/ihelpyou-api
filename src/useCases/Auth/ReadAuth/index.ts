@@ -9,12 +9,12 @@ const typeormAuthRepository = new AuthRepository(
   dataSource.getRepository(AuthORM)
 )
 
-const readUserUseCase = new ReadAuthUseCase(
+const readAuthUseCase = new ReadAuthUseCase(
   typeormAuthRepository,
 )
 
 const readAuthController = new ReadAuthController(
-  readUserUseCase
+  readAuthUseCase
 )
 
-export { readUserUseCase, readAuthController }
+export { readAuthUseCase, readAuthController }

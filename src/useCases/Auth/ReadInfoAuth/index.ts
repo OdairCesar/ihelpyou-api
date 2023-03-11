@@ -1,20 +1,20 @@
 import { dataSource } from "../../../../ormconfig";
 import { AuthORM } from "../../../database/typeorm/entity/AuthORM";
 import { AuthRepository } from "../../../repositories/implementations/typeorm/AuthRepository";
-import { ModifyAuthController } from "./ModifyAuthController";
-import { ModifyAuthUseCase } from "./ModifyAuthUseCase";
+import { ReadInfoAuthController } from "./ReadInfoAuthController";
+import { ReadInfoAuthUseCase } from "./ReadInfoAuthUseCase";
 
 
 const typeormAuthRepository = new AuthRepository(
   dataSource.getRepository(AuthORM)
 )
 
-const modifyAuthUseCase = new ModifyAuthUseCase(
+const readInfoAuthUseCase = new ReadInfoAuthUseCase(
   typeormAuthRepository,
 )
 
-const modifyAuthController = new ModifyAuthController(
-  modifyAuthUseCase
+const readInfoAuthController = new ReadInfoAuthController(
+  readInfoAuthUseCase
 )
 
-export { modifyAuthUseCase, modifyAuthController }
+export { readInfoAuthUseCase, readInfoAuthController }

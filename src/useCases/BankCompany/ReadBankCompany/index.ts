@@ -9,12 +9,12 @@ const typeormBankCompanyRepository = new BankCompanyRepository(
   dataSource.getRepository(BankCompanyORM)
 )
 
-const readUserUseCase = new ReadBankCompanyUseCase(
+const readBankCompanyUseCase = new ReadBankCompanyUseCase(
   typeormBankCompanyRepository,
 )
 
 const readBankCompanyController = new ReadBankCompanyController(
-  readUserUseCase
+  readBankCompanyUseCase
 )
 
-export { readUserUseCase, readBankCompanyController }
+export { readBankCompanyUseCase, readBankCompanyController }

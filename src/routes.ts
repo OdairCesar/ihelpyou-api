@@ -7,18 +7,27 @@ import { modifyBankCompanyController } from "./useCases/BankCompany/ModifyBankCo
 import { readBankCompanyController } from "./useCases/BankCompany/ReadBankCompany";
 import { createBankAnalysisController } from "./useCases/BankAnalysis/CreateBankAnalysis";
 import { deleteBankAnalysisController } from "./useCases/BankAnalysis/DeleteBankAnalysis";
+import { modifyBankAnalysisController } from "./useCases/BankAnalysis/ModifyBankAnalysis";
+import { readBankAnalysisController } from "./useCases/BankAnalysis/ReadBankAnalysis";
+import { readInfoAuthController } from "./useCases/Auth/ReadInfoAuth";
 
 const routes = Router()
 
 
 
 
-routes.put('/auth', (request, response) => {
+routes.put('/base', (request, response) => {
   return createAuthController.handle(request, response)
 })
-routes.post('/auth/:id', (request, response) => {
+
+routes.post('/base/:id', (request, response) => {
   return modifyAuthController.handle(request, response)
 })
+
+routes.get('/base', (request, response) => {
+  return readInfoAuthController.handle(request, response)
+})
+
 routes.get('/auth', (request, response) => {
   return readAuthController.handle(request, response)
 })
@@ -48,11 +57,11 @@ routes.delete('/bankAnalysis', (request, response) => {
 })
 
 routes.post('/bankAnalysis/:id', (request, response) => {
-  return modifyAuthController.handle(request, response)
+  return modifyBankAnalysisController.handle(request, response)
 })
 
 routes.get('/bankAnalysis', (request, response) =>{
-  return ReadBankAnalysisController.handle(request, response)
+  return readBankAnalysisController.handle(request, response)
 })
 
 export { routes }
