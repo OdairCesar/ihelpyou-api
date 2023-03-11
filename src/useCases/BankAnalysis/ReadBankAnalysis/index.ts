@@ -1,20 +1,20 @@
 import { dataSource } from "../../../../ormconfig";
 import { BankAnalysisORM } from "../../../database/typeorm/entity/BankAnalysisORM";
 import { BankAnalysisRepository } from "../../../repositories/implementations/typeorm/BankAnalysisRepository";
-import { CreateBankAnalysisController } from "./CreateBankAnalysisController";
-import { CreateBankAnalysisUseCase } from "./CreateBankAnalysisUseCase";
+import { ReadBankAnalysisController } from "./ReadBankAnalysisController";
+import { ReadBankAnalysisUseCase } from "./ReadBankAnalysisUseCase";
 
 
 const typeormBankAnalysisRepository = new BankAnalysisRepository(
   dataSource.getRepository(BankAnalysisORM)
 )
 
-const createBankAnalysisUseCase = new CreateBankAnalysisUseCase(
+const readBankAnalysisUseCase = new ReadBankAnalysisUseCase(
   typeormBankAnalysisRepository,
 )
 
-const createBankAnalysisController = new CreateBankAnalysisController(
-  createBankAnalysisUseCase
+const readBankAnalysisController = new ReadBankAnalysisController(
+  readBankAnalysisUseCase
 )
 
-export { createBankAnalysisUseCase, createBankAnalysisController }
+export { readBankAnalysisUseCase, readBankAnalysisController }

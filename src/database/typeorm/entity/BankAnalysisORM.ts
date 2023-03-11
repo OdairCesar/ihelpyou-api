@@ -7,20 +7,23 @@ export class BankAnalysisORM {
   @PrimaryGeneratedColumn("uuid")
   id: string
 
-  @Column()
+  @Column({ nullable: true })
   maximum: number
 
-  @Column()
+  @Column({ nullable: true })
   minimum: number
 
-  @Column()
-  avDay: number
+  @Column({ nullable: true })
+  avgDay: number
+
+  @Column({ nullable: true })
+  avgWeek: number
+
+  @Column({ nullable: true })
+  avgService: number
 
   @Column()
-  avWeek: number
-
-  @Column()
-  avService: number
+  dateStart: Date
 
   @ManyToOne(type => BankCompanyORM, bankAnalyzes => BankAnalysisORM)
   idBank: BankCompanyORM

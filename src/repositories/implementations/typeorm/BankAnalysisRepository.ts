@@ -1,4 +1,4 @@
-import { LessThanOrEqual, MoreThanOrEqual, Repository } from "typeorm";
+import { Between, LessThanOrEqual, MoreThanOrEqual, Repository } from "typeorm";
 import { BankAnalysis } from "../../../entities/BankAnalysis"
 import { IBankAnalysisRepository } from "../../IBankAnalysisRepository";
 import { BankAnalysisORM } from "../../../database/typeorm/entity/BankAnalysisORM";
@@ -30,6 +30,15 @@ export class BankAnalysisRepository implements IBankAnalysisRepository {
     })
   }
 
+  async findByDateStartMonth(date: Date): Promise<BankAnalysis[]> {
+    const startDate = new Date(date)
+    startDate.setDate(date.getDate() - 30)
+
+    return await this.bankAnalysisRepository.findBy({
+      dateStart: Between(startDate, date),
+    })
+  }
+
 
   async findByIdBankCompany(idBankCompany: string): Promise<Array<BankAnalysis>> {
     return await this.bankAnalysisRepository.findBy({
@@ -47,5 +56,9 @@ export class BankAnalysisRepository implements IBankAnalysisRepository {
 
   async update(bankAnalysis: BankAnalysis): Promise<void> {
     if (typeof bankAnalysis.id === 'string') this.bankAnalysisRepository.update({ id: bankAnalysis.id }, bankAnalysis)
+  }
+
+  async delete(bankAnalysis: BankAnalysis): Promise<void> {
+    await this.bankAnalysisRepository.delete(bankAnalysis)
   }
 }
