@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router, response } from "express";
 import { createAuthController } from "./useCases/Auth/CreateAuth";
 import { modifyAuthController } from "./useCases/Auth/ModifyAuth";
 import { readAuthController } from "./useCases/Auth/ReadAuth";
@@ -14,6 +14,7 @@ import { createBaseRegistrationController } from "./useCases/BaseRegistration/Cr
 import { modifyBaseRegistrationController } from "./useCases/BaseRegistration/ModifyBaseRegistration";
 import { readBaseRegistrationController } from "./useCases/BaseRegistration/ReadBaseResgistration";
 import { deleteBankCompanyController } from "./useCases/BankCompany/DeleteBankCompany";
+import { readCityController } from "./useCases/City/ReadCity";
 
 const routes = Router()
 
@@ -88,4 +89,15 @@ routes.post('/baseRegistration/:id', (request, response) => {
 routes.get('/baseRegistration', (request, response) =>{
   return readBaseRegistrationController.handle(request, response)
 })
+
+
+
+
+routes.get('/cities', (request, reponse) => {
+  return readCityController.handle(request, response) 
+})
+
+
+
+
 export { routes }
