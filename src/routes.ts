@@ -13,6 +13,7 @@ import { readInfoAuthController } from "./useCases/Auth/ReadInfoAuth";
 import { createBaseRegistrationController } from "./useCases/BaseRegistration/CreateBaseRegistration";
 import { modifyBaseRegistrationController } from "./useCases/BaseRegistration/ModifyBaseRegistration";
 import { readBaseRegistrationController } from "./useCases/BaseRegistration/ReadBaseResgistration";
+import { deleteBankCompanyController } from "./useCases/BankCompany/DeleteBankCompany";
 
 const routes = Router()
 
@@ -40,6 +41,10 @@ routes.get('/auth', (request, response) => {
 
 routes.put('/bank', (request, response) => {
   return createBankCompanyController.handle(request, response)
+})
+
+routes.delete('/bank', (request, response) =>{
+  return deleteBankCompanyController.handle(request, response) 
 })
 
 routes.post('/bank/:id', (request, response) => {

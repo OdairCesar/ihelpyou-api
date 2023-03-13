@@ -10,7 +10,7 @@ export class ReadBankAnalysisController {
 
     if (!id || !maxinum || !mininum || !idBank) {
       return response.status(400).json({
-        message: "Não a parametros para a busca",
+        message: "Não há parametros para a busca",
       });
     }
 
@@ -30,9 +30,9 @@ export class ReadBankAnalysisController {
     }
 
     try {
-      const banks = await this.readBankAnalysisUseCase.execute(dto);
+      const analyzes = await this.readBankAnalysisUseCase.execute(dto);
 
-      return response.status(201).json(banks);
+      return response.status(201).json(analyzes);
     } catch (err) {
       return response.status(400).json({
         message: err.message || "Unexpected error.",

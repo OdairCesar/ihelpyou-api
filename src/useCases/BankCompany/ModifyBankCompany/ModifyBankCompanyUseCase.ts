@@ -1,4 +1,3 @@
-import { BankCompany } from "../../../entities/BankCompany";
 import { IBankCompanyRepository } from "../../../repositories/IBankCompanyRepository";
 import { IModifyBankCompanyRequestDTO } from "./ModifyBankCompanyDTO"
 

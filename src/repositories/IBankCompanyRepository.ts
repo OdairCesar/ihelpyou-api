@@ -11,4 +11,5 @@ export interface IBankCompanyRepository {
   findByIdCompany(idCompany: string): Promise<Array<BankCompany>>
   insert(bankCompany: BankCompany): Promise<void>
   update(bankCompany: BankCompany): Promise<void>
+  delete(bankCompany: BankCompany): Promise<void>
 }

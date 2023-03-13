@@ -77,5 +77,9 @@ export class BankCompanyRepository implements IBankCompanyRepository {
     if (typeof bankCompany.id === 'string') this.bankCompanyRepository.update({ id: bankCompany.id }, bankCompany)
   }
 
+  async delete(bankCompany: BankCompany): Promise<void> {
+    this.bankCompanyRepository.delete(bankCompany)  
+  }
+
 
 }
