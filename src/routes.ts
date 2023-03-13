@@ -10,6 +10,9 @@ import { deleteBankAnalysisController } from "./useCases/BankAnalysis/DeleteBank
 import { modifyBankAnalysisController } from "./useCases/BankAnalysis/ModifyBankAnalysis";
 import { readBankAnalysisController } from "./useCases/BankAnalysis/ReadBankAnalysis";
 import { readInfoAuthController } from "./useCases/Auth/ReadInfoAuth";
+import { createBaseRegistrationController } from "./useCases/BaseRegistration/CreateBaseRegistration";
+import { modifyBaseRegistrationController } from "./useCases/BaseRegistration/ModifyBaseRegistration";
+import { readBaseRegistrationController } from "./useCases/BaseRegistration/ReadBaseResgistration";
 
 const routes = Router()
 
@@ -38,9 +41,11 @@ routes.get('/auth', (request, response) => {
 routes.put('/bank', (request, response) => {
   return createBankCompanyController.handle(request, response)
 })
+
 routes.post('/bank/:id', (request, response) => {
   return modifyBankCompanyController.handle(request, response)
 })
+
 routes.get('/bank', (request, response) => {
   return readBankCompanyController.handle(request, response)
 })
@@ -64,4 +69,18 @@ routes.get('/bankAnalysis', (request, response) =>{
   return readBankAnalysisController.handle(request, response)
 })
 
+
+
+
+routes.put('/baseRegistration', (request, response) => {
+  return createBaseRegistrationController.handle(request, response)
+})
+
+routes.post('/baseRegistration/:id', (request, response) => {
+  return modifyBaseRegistrationController.handle(request, response)
+})
+
+routes.get('/baseRegistration', (request, response) =>{
+  return readBaseRegistrationController.handle(request, response)
+})
 export { routes }

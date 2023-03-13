@@ -16,7 +16,7 @@ export class BaseRegistrationORM {
   @Column()
   fone: number
 
-  @Column()
+  @Column({ nullable: true })
   image: string
 
   @Column()

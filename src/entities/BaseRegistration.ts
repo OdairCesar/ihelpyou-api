@@ -5,7 +5,7 @@ export class BaseRegistration {
   public readonly id: any
   public name: string
   public fone: number
-  public image: string
+  public image?: string
   public address: string
   public addressNumber: number
   public neighborhood: string 
