@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm"
 import { BankCompanyORM } from "./BankCompanyORM"
 import { DepartmentORM } from "./DepartmentORM"
 import { CompanyServiceORM } from "./CompanyServiceORM"
@@ -13,15 +13,18 @@ export class CompanyORM {
   id: string
 
   @Column()
+  name: string
+
+  @Column({ nullable: true })
   description: string
 
-  @Column()
+  @Column({ nullable: true })
   mei: number
 
-  @Column()
+  @Column({ nullable: true })
   cnpj: number
 
-  @Column()
+  @Column({ nullable: true })
   cpf: number
 
   @OneToOne(type => BaseRegistrationORM, company => CompanyORM)
@@ -34,7 +37,8 @@ export class CompanyORM {
   @OneToMany(type => CompanyServiceORM, company => CompanyORM)
   companyServices: CompanyServiceORM[]
 
-  @ManyToOne(type => CompanyStatusORM, companies => CompanyORM)
+  @OneToOne(type => CompanyStatusORM, company => CompanyORM, { nullable: true })
+  @JoinColumn()
   idStatus: CompanyStatusORM
 
   @ManyToMany(type => DepartmentORM, department => department.companies)

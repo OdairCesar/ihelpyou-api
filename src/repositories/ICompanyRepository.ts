@@ -5,7 +5,7 @@ export interface ICompanyRepository {
   findByMEI(mei: number): Promise<Company>
   findByCNPJ(cnpj: number): Promise<Company>
   findByCPF(cpf: number): Promise<Array<Company>>
-  findByIdBaseRegistration(idBaseRegistration: string): Promise<Array<Company>>
+  findByIdBaseRegistration(idBaseRegistration: string): Promise<Company>
   findByIdStatus(idStatus: string): Promise<Company>
   insert(company: Company): Promise<void>
   update(company: Company): Promise<void>

@@ -38,8 +38,8 @@ export class CompanyRepository implements ICompanyRepository {
   }
   
 
-  async findByIdBaseRegistration(idBaseRegistration: string): Promise<Array<Company>> {
-    return await this.companyRepository.findBy({
+  async findByIdBaseRegistration(idBaseRegistration: string): Promise<Company> {
+    return await this.companyRepository.findOneBy({
       idBaseRegistration: {
         id: idBaseRegistration
       }
