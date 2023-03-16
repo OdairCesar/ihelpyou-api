@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { CompanyServiceORM } from "./CompanyServiceORM";
+import { ServiceORM } from "./ServiceORM";
 import { CompanyORM } from "./CompanyORM";
 import { CompanyDepartmentORM } from "./CompanyDepartmentORM";
 
@@ -18,8 +18,8 @@ export class DepartmentORM {
   @Column()
   image: string;
 
-  @OneToMany(type => CompanyServiceORM, department => DepartmentORM)
-  companyServices: CompanyServiceORM[]
+  @OneToMany(type => ServiceORM, department => DepartmentORM)
+  services: ServiceORM[]
  
   @ManyToMany(type => CompanyORM, company => company.departments)
   companies: CompanyORM[]

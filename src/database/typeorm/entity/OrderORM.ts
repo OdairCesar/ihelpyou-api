@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 import { BankCompanyORM } from "./BankCompanyORM"
-import { CompanyServiceORM } from "./CompanyServiceORM"
+import { ServiceORM } from "./ServiceORM"
 import { UserCardORM } from "./UserCardORM"
 import { UserORM } from "./UserORM"
 import { OrderEvaluationORM } from "./OrderEvaluationORM"
@@ -35,7 +35,7 @@ export class OrderORM {
   @ManyToOne(type => UserORM, orders => OrderORM)
   idUser: UserORM
   
-  @ManyToOne(type => CompanyServiceORM, orders => OrderORM)
-  idCompanyService: CompanyServiceORM
+  @ManyToOne(type => ServiceORM, orders => OrderORM)
+  idService: ServiceORM
   
 }

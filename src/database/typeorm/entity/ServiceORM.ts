@@ -6,7 +6,7 @@ import { OrderEvaluationORM } from "./OrderEvaluationORM"
 import { OrderORM } from "./OrderORM"
 
 @Entity('company_service')
-export class CompanyServiceORM {
+export class ServiceORM {
   
   @PrimaryGeneratedColumn("uuid")
   id: string
@@ -14,13 +14,13 @@ export class CompanyServiceORM {
   @Column()
   name: string
   
-  @Column()
+  @Column({ nullable: true })
   description: string
   
-  @Column()
+  @Column({ nullable: true })
   minTime: string
   
-  @Column()
+  @Column({ nullable: true })
   maxTime: string
   
   @Column()
@@ -29,19 +29,19 @@ export class CompanyServiceORM {
   @Column()
   value: number
 
-  @OneToMany(type => OrderORM, companyService => CompanyServiceORM)
+  @OneToMany(type => OrderORM, service => ServiceORM)
   orders: OrderORM[]
   
-  @OneToMany(type => ServiceAnalysisORM, companyService => CompanyServiceORM)
+  @OneToMany(type => ServiceAnalysisORM, service => ServiceORM)
   serviceAnalyzes: ServiceAnalysisORM[]
   
-  @OneToMany(type => OrderEvaluationORM, companyService => CompanyServiceORM)
+  @OneToMany(type => OrderEvaluationORM, service => ServiceORM)
   orderReviews: OrderEvaluationORM[]
   
-  @ManyToOne(type => DepartmentORM, companyServices => CompanyServiceORM)
+  @ManyToOne(type => DepartmentORM, services => ServiceORM)
   idDepartment: DepartmentORM
   
-  @ManyToOne(type => CompanyORM, companyServices => CompanyServiceORM)
+  @ManyToOne(type => CompanyORM, services => ServiceORM)
   idCompany: CompanyORM
 
 }

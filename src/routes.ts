@@ -15,6 +15,10 @@ import { modifyBaseRegistrationController } from "./useCases/BaseRegistration/Mo
 import { readBaseRegistrationController } from "./useCases/BaseRegistration/ReadBaseResgistration";
 import { deleteBankCompanyController } from "./useCases/BankCompany/DeleteBankCompany";
 import { readCityController } from "./useCases/City/ReadCity";
+import { modifyServiceController } from "./useCases/Service/ModifyService";
+import { deleteServiceController } from "./useCases/Service/DeleteService";
+import { readServiceController } from "./useCases/Service/ReadService";
+import { createServiceController } from "./useCases/Service/CreateService";
 
 const routes = Router()
 
@@ -93,10 +97,28 @@ routes.get('/baseRegistration', (request, response) =>{
 
 
 
-routes.get('/cities', (request, reponse) => {
+routes.get('/city', (request, response) => {
   return readCityController.handle(request, response) 
 })
 
+
+
+
+routes.put('/service', (request, response) => {
+  return createServiceController.handle(request, response) 
+})
+
+routes.delete('/service', (request, response) => {
+  return deleteServiceController.handle(request, response) 
+})
+
+routes.post('/service', (request, response) => {
+  return modifyServiceController.handle(request, response) 
+})
+
+routes.get('/service', (request, response) => {
+  return readServiceController.handle(request, response) 
+})
 
 
 

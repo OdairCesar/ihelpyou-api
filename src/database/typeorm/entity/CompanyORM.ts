@@ -1,7 +1,7 @@
 import { Column, Entity, JoinColumn, JoinTable, ManyToMany, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm"
 import { BankCompanyORM } from "./BankCompanyORM"
 import { DepartmentORM } from "./DepartmentORM"
-import { CompanyServiceORM } from "./CompanyServiceORM"
+import { ServiceORM } from "./ServiceORM"
 import { CompanyStatusORM } from "./CompanyStatusORM"
 import { BaseRegistrationORM } from "./BaseRegistrationORM"
 import { CompanyDepartmentORM } from "./CompanyDepartmentORM"
@@ -34,8 +34,8 @@ export class CompanyORM {
   @OneToMany(type => BankCompanyORM, company => CompanyORM)
   banksCompany: BankCompanyORM[];
 
-  @OneToMany(type => CompanyServiceORM, company => CompanyORM)
-  companyServices: CompanyServiceORM[]
+  @OneToMany(type => ServiceORM, company => CompanyORM)
+  services: ServiceORM[]
 
   @OneToOne(type => CompanyStatusORM, company => CompanyORM, { nullable: true })
   @JoinColumn()

@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
-import { CompanyServiceORM } from "./CompanyServiceORM"
+import { ServiceORM } from "./ServiceORM"
 import { UserORM } from "./UserORM"
 import { OrderORM } from "./OrderORM"
 
@@ -24,7 +24,7 @@ export class OrderEvaluationORM {
   @ManyToOne(type => OrderORM, orderReviews => OrderEvaluationORM)
   idOrder: OrderORM
   
-  @ManyToOne(type => CompanyServiceORM, orderReviews => OrderEvaluationORM)
-  idCompanyService: CompanyServiceORM
+  @ManyToOne(type => ServiceORM, orderReviews => OrderEvaluationORM)
+  idService: ServiceORM
   
 }

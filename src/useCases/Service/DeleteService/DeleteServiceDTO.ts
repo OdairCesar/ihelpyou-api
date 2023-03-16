@@ -1,0 +1,3 @@
+interface IDeleteServiceRequestDTO{
+  id: string
+}

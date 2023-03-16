@@ -8,7 +8,7 @@ import { OrderORM } from "./src/database/typeorm/entity/OrderORM";
 import { OrderEvaluationORM } from "./src/database/typeorm/entity/OrderEvaluationORM";
 import { UserORM } from "./src/database/typeorm/entity/UserORM";
 import { UserCardORM } from "./src/database/typeorm/entity/UserCardORM";
-import { CompanyServiceORM } from "./src/database/typeorm/entity/CompanyServiceORM";
+import { ServiceORM } from "./src/database/typeorm/entity/ServiceORM";
 import { ServiceAnalysisORM } from "./src/database/typeorm/entity/ServiceAnalysisORM";
 import { DepartmentORM } from "./src/database/typeorm/entity/DepartmentORM";
 import { StateORM } from "./src/database/typeorm/entity/StateORM";
@@ -35,7 +35,7 @@ const connectionSource = new DataSource({
     CityORM,
     CompanyDepartmentORM,
     CompanyORM,
-    CompanyServiceORM,
+    ServiceORM,
     CompanyStatusORM,
     DepartmentORM,
     OrderEvaluationORM,
