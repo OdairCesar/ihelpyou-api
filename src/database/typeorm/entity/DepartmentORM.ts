@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ServiceORM } from "./ServiceORM";
 import { CompanyORM } from "./CompanyORM";
 import { CompanyDepartmentORM } from "./CompanyDepartmentORM";
@@ -22,6 +22,7 @@ export class DepartmentORM {
   services: ServiceORM[]
  
   @ManyToMany(type => CompanyORM, company => company.departments)
+  @JoinTable()
   companies: CompanyORM[]
 
   companyDepartment: CompanyDepartmentORM

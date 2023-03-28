@@ -42,17 +42,6 @@ export class CompanyORM {
   idStatus: CompanyStatusORM
 
   @ManyToMany(type => DepartmentORM, department => department.companies)
-  @JoinTable({
-    name: "company_department",
-    joinColumn: {
-      name: "id_company",
-      referencedColumnName: "id"
-    },
-    inverseJoinColumn: {
-      name: "id_department",
-      referencedColumnName: "id"
-    }
-  })
   departments: DepartmentORM[]
   
   companyDepartment: CompanyDepartmentORM[]

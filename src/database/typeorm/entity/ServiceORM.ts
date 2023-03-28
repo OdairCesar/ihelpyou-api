@@ -5,7 +5,7 @@ import { CompanyORM } from "./CompanyORM"
 import { OrderEvaluationORM } from "./OrderEvaluationORM"
 import { OrderORM } from "./OrderORM"
 
-@Entity('company_service')
+@Entity('service')
 export class ServiceORM {
   
   @PrimaryGeneratedColumn("uuid")

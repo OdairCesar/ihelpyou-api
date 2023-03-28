@@ -8,7 +8,7 @@ export class CreateCompanyUseCase {
   constructor(
     private companyRepository: ICompanyRepository,
     private baseRegistrationRepository: IBaseRegistrationRepository,
-    private companyStatusRepository: ICompanyStatusRepository
+    private companyStatusRepository: ICompanyStatusRepository,
   ) { }
 
   async execute(data: ICreateCompanyRequestDTO) {

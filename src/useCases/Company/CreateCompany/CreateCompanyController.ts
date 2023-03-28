@@ -1,11 +1,13 @@
 import { Request, Response } from "express";
 import { ICreateCompanyRequestDTO } from "./CreateCompanyDTO";
 import { CreateCompanyUseCase } from "./CreateCompanyUseCase";
+import { CreateCompanyStatusUseCase } from "../../CompanyStatus/CreateCompanyStatus/CreateCompanyStatusUseCase";
 
 export class CreateCompanyController {
 
   constructor(
-    private createCompanyUseCase: CreateCompanyUseCase
+    private createCompanyUseCase: CreateCompanyUseCase,
+    private createCompanyStatusUseCase: CreateCompanyStatusUseCase
   ) { }
 
   async handle(request: Request, response: Response) {
@@ -27,7 +29,11 @@ export class CreateCompanyController {
     if (mei && typeof mei === 'number') dto.mei = mei;
     if (cnpj && typeof cnpj === 'number') dto.cnpj = cnpj;
     if (cpf && typeof cpf === 'number') dto.cpf = cpf;
-    if (idStatus && typeof idStatus === 'string') dto.idStatus = idStatus;
+    if (idStatus && typeof idStatus === 'string') {
+      dto.idStatus = idStatus;
+    } else {
+      dto.idStatus = await this.createCompanyStatusUseCase.execute({})
+    }
 
     try{
       this.createCompanyUseCase.execute(dto)
