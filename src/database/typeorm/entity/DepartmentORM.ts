@@ -12,10 +12,10 @@ export class DepartmentORM {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ nullable: true})
   description: string;
 
-  @Column()
+  @Column({ nullable: true})
   image: string;
 
   @OneToMany(type => ServiceORM, department => DepartmentORM)
@@ -24,6 +24,4 @@ export class DepartmentORM {
   @ManyToMany(type => CompanyORM, company => company.departments)
   @JoinTable()
   companies: CompanyORM[]
-
-  companyDepartment: CompanyDepartmentORM
 }

@@ -1,0 +1,3 @@
+interface IDepartmentRequestDTO{
+  id: string
+}

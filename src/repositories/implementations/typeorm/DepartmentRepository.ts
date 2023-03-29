@@ -1,7 +1,8 @@
-import { Repository } from "typeorm";
+import { Like, Repository } from "typeorm";
 import { Department } from "../../../entities/Department"
 import { DepartmentORM } from "../../../database/typeorm/entity/DepartmentORM";
 import { IDepartmentRepository } from "../../IDepartmentRepository";
+import { type } from "os";
 
 export class DepartmentRepository implements IDepartmentRepository {
 
@@ -17,9 +18,9 @@ export class DepartmentRepository implements IDepartmentRepository {
   }
   
 
-  async findByName(name: string): Promise<Department> {
-    return await this.departmentRepository.findOneBy({
-      name: name,
+  async findByName(name: string): Promise<Array<Department>> {
+    return await this.departmentRepository.findBy({
+      name: Like(name),
     })
   }
   
@@ -34,4 +35,9 @@ export class DepartmentRepository implements IDepartmentRepository {
   }
   
 
+  async delete(department: Department): Promise<void> {
+    if (typeof department.id === 'string') this.departmentRepository.delete({ id: department.id })
+  }
+
+  
 }
