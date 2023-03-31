@@ -7,7 +7,7 @@ export interface IOrderRepository {
   findByIdBankCompany(idBankCompany: string): Promise<Array<Order>>
   findByIdUserCard(idUserCard: string): Promise<Array<Order>>
   findByIdUser(idUser: string): Promise<Array<Order>>
-  findByIdCompanyService(idCompanyService: string): Promise<Array<Order>>
+  findByIdService(idService: string): Promise<Array<Order>>
   insert(order: Order): Promise<void>
   update(order: Order): Promise<void>
 }

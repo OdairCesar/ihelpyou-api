@@ -14,7 +14,7 @@ export class OrderORM {
   @Column()
   dataStart: Date
   
-  @Column()
+  @Column({ nullable: true })
   dataFinish: Date
   
   @Column()

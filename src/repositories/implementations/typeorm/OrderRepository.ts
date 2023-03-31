@@ -58,10 +58,10 @@ export class OrderRepository implements IOrderRepository {
   }
   
 
-  async findByIdCompanyService(idCompanyService: string): Promise<Array<Order>> {
+  async findByIdService(idService: string): Promise<Array<Order>> {
     return await this.orderRepository.findBy({
-      idCompanyService: {
-        id: idCompanyService
+      idService: {
+        id: idService
       }
     })
   }
