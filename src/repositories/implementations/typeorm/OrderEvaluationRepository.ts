@@ -15,6 +15,12 @@ export class OrderEvaluationRepository implements IOrderEvaluationRepository {
       id: id
     })
   }
+
+  async findByDate(date: Date): Promise<OrderEvaluation[]> {
+    return await this.orderEvaluationRepository.findBy({
+      date: date
+    })
+  }
   
 
   async findByStars(amountStars: number): Promise<Array<OrderEvaluation>> {
@@ -42,10 +48,10 @@ export class OrderEvaluationRepository implements IOrderEvaluationRepository {
   }
 
 
-  async findByIdCompanyService(idCompanyService: string): Promise<OrderEvaluation[]> {
+  async findByIdService(idService: string): Promise<OrderEvaluation[]> {
     return await this.orderEvaluationRepository.findBy({
-      idCompanyService: {
-        id: idCompanyService
+      idService: {
+        id: idService
       }
     })
   }
@@ -58,6 +64,11 @@ export class OrderEvaluationRepository implements IOrderEvaluationRepository {
 
   async update(orderEvaluation: OrderEvaluation): Promise<void> {
     if (typeof orderEvaluation.id === 'string') this.orderEvaluationRepository.update({ id: orderEvaluation.id }, orderEvaluation)
+  }
+  
+
+  async delete(orderEvaluation: OrderEvaluation): Promise<void> {
+    if (typeof orderEvaluation.id === 'string') this.orderEvaluationRepository.delete({ id: orderEvaluation.id })
   }
   
 

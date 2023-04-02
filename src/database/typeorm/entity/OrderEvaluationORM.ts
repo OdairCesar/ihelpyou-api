@@ -9,11 +9,14 @@ export class OrderEvaluationORM {
   @PrimaryGeneratedColumn("uuid")
   id: string
   
-  @Column()
-  title: Date
+  @Column({ nullable: true })
+  title: string
   
-  @Column()
+  @Column({ nullable: true })
   description: string
+
+  @Column()
+  date: Date
   
   @Column()
   amountStars: number

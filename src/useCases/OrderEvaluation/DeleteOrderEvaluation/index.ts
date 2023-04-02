@@ -1,21 +1,20 @@
-
 import { dataSource } from "../../../../ormconfig";
 import { OrderEvaluationORM } from "../../../database/typeorm/entity/OrderEvaluationORM";
 import { OrderEvaluationRepository } from "../../../repositories/implementations/typeorm/OrderEvaluationRepository";
-import { ReadOrderEvaluationController } from "./ReadOrderEvaluationController";
-import { ReadOrderEvaluationUseCase } from "./ReadOrderEvaluationUseCase";
+import { DeleteOrderEvaluationController } from "./DeleteOrderEvaluationController";
+import { DeleteOrderEvaluationUseCase } from "./DeleteOrderEvaluationUseCase";
 
 
 const typeormOrderEvaluationRepository = new OrderEvaluationRepository(
   dataSource.getRepository(OrderEvaluationORM)
 )
 
-const readOrderEvaluationUseCase = new ReadOrderEvaluationUseCase(
+const deleteOrderEvaluationUseCase = new DeleteOrderEvaluationUseCase(
   typeormOrderEvaluationRepository,
 )
 
-const readOrderEvaluationController = new ReadOrderEvaluationController(
-  readOrderEvaluationUseCase
+const deleteOrderEvaluationController = new DeleteOrderEvaluationController(
+  deleteOrderEvaluationUseCase
 )
 
-export { readOrderEvaluationUseCase, readOrderEvaluationController }
+export { deleteOrderEvaluationUseCase, deleteOrderEvaluationController }

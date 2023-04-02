@@ -1,0 +1,3 @@
+interface IOrderEvaluationRequestDTO{
+  id: string
+}
