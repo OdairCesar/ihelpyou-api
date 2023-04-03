@@ -8,6 +8,10 @@ export class ReadAuthController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { id, email, google, facebook } = request.body;
 
+    if (!id && !email && !google && !facebook) {
+      throw Error('Nenhum parametro informato');
+    }
+
     let dto: IReadAuthRequestDTO = {};
 
     if (id) {
