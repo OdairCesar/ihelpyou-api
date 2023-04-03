@@ -19,6 +19,27 @@ import { modifyServiceController } from "./useCases/Service/ModifyService";
 import { deleteServiceController } from "./useCases/Service/DeleteService";
 import { readServiceController } from "./useCases/Service/ReadService";
 import { createServiceController } from "./useCases/Service/CreateService";
+import { createCompanyController } from "./useCases/Company/CreateCompany";
+import { modifyCompanyController } from "./useCases/Company/ModifyCompany";
+import { readCompanyController } from "./useCases/Company/ReadCompany";
+import { createCompanyStatusController } from "./useCases/CompanyStatus/CreateCompanyStatus";
+import { modifyCompanyStatusController } from "./useCases/CompanyStatus/ModifyCompanyStatus";
+import { readCompanyStatusController } from "./useCases/CompanyStatus/ReadCompanyStatus";
+import { createDepartmentController } from "./useCases/Department/CreateDepartment";
+import { deleteDepartmentController } from "./useCases/Department/DeleteDepartment";
+import { modifyDepartmentController } from "./useCases/Department/ModifyDepartment";
+import { readDepartmentController } from "./useCases/Department/ReadDepartment";
+import { createOrderController } from "./useCases/Order/CreateOrder";
+import { modifyOrderController } from "./useCases/Order/ModifyOrder";
+import { readOrderController } from "./useCases/Order/ReadOrder";
+import { createOrderEvaluationController } from "./useCases/OrderEvaluation/CreateOrderEvaluation";
+import { deleteOrderEvaluationController } from "./useCases/OrderEvaluation/DeleteOrderEvaluation";
+import { modifyOrderEvaluationController } from "./useCases/OrderEvaluation/ModifyOrderEvaluation";
+import { readOrderEvaluationController } from "./useCases/OrderEvaluation/ReadOrderEvaluation";
+import { createPlatformBenefitController } from "./useCases/PlatformBenefit/CreatePlatformBenefit";
+import { deletePlatformBenefitController } from "./useCases/PlatformBenefit/DeletePlatformBenefit";
+import { modifyPlatformBenefitController } from "./useCases/PlatformBenefit/ModifyPlatformBenefit";
+import { readPlatformBenefitController } from "./useCases/PlatformBenefit/ReadPlatformBenefit";
 
 const routes = Router()
 
@@ -119,6 +140,109 @@ routes.post('/service', (request, response) => {
 routes.get('/service', (request, response) => {
   return readServiceController.handle(request, response) 
 })
+
+
+
+
+routes.put('/company', (request, response) => {
+  return createCompanyController.handle(request, response) 
+})
+
+routes.post('/company', (request, response) => {
+  return modifyCompanyController.handle(request, response) 
+})
+
+routes.get('/company', (request, response) => {
+  return readCompanyController.handle(request, response) 
+})
+
+
+
+
+routes.put('/companyStatus', (request, response) => {
+  return createCompanyStatusController.handle(request, response) 
+})
+
+routes.post('/companyStatus', (request, response) => {
+  return modifyCompanyStatusController.handle(request, response) 
+})
+
+routes.get('/companyStatus', (request, response) => {
+  return readCompanyStatusController.handle(request, response) 
+})
+
+
+
+
+routes.put('/department', (request, response) => {
+  return createDepartmentController.handle(request, response) 
+})
+
+routes.delete('/department', (request, response) => {
+  return deleteDepartmentController.handle(request, response) 
+})
+
+routes.post('/department', (request, response) => {
+  return modifyDepartmentController.handle(request, response) 
+})
+
+routes.get('/department', (request, response) => {
+  return readDepartmentController.handle(request, response) 
+})
+
+
+
+
+routes.put('/order', (request, response) => {
+  return createOrderController.handle(request, response) 
+})
+
+routes.post('/order', (request, response) => {
+  return modifyOrderController.handle(request, response) 
+})
+
+routes.get('/order', (request, response) => {
+  return readOrderController.handle(request, response) 
+})
+
+
+
+
+routes.put('/orderEvaluation', (request, response) => {
+  return createOrderEvaluationController.handle(request, response) 
+})
+
+routes.delete('/orderEvaluation', (request, response) => {
+  return deleteOrderEvaluationController.handle(request, response) 
+})
+
+routes.post('/orderEvaluation', (request, response) => {
+  return modifyOrderEvaluationController.handle(request, response) 
+})
+
+routes.get('/orderEvaluation', (request, response) => {
+  return readOrderEvaluationController.handle(request, response) 
+})
+
+
+
+
+routes.put('/platformBenefit', (request, response) => {
+  return createPlatformBenefitController.handle(request, response) 
+})
+
+routes.delete('/platformBenefit', (request, response) => {
+  return deletePlatformBenefitController.handle(request, response) 
+})
+
+routes.post('/platformBenefit', (request, response) => {
+  return modifyPlatformBenefitController.handle(request, response) 
+})
+
+routes.get('/platformBenefit', (request, response) => {
+  return readPlatformBenefitController.handle(request, response) 
+})
+
 
 
 
