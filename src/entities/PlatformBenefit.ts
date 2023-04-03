@@ -4,7 +4,7 @@ export class PlatformBenefit {
 
   public readonly id: any
   public name: string
-  public description: string
+  public description?: string
   public amount: number
   public idPlan: any
 

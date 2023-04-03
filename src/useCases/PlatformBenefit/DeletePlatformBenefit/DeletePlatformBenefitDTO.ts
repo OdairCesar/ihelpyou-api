@@ -1,0 +1,3 @@
+interface IPlatformBenefitRequestDTO{
+  id: string
+}

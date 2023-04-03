@@ -1,6 +1,6 @@
-import { Repository } from "typeorm";
+import { Like, Repository } from "typeorm";
 import { PlatformBenefit } from "../../../entities/PlatformBenefit"
-import { IPlatformBenefitRepository } from "../../IPlataformBenefitRepository";
+import { IPlatformBenefitRepository } from "../../IPlatformBenefitRepository";
 import { PlatformBenefitORM } from "../../../database/typeorm/entity/PlatformBenefitORM";
 
 export class PlatformBenefitRepository implements IPlatformBenefitRepository {
@@ -13,6 +13,20 @@ export class PlatformBenefitRepository implements IPlatformBenefitRepository {
   async findById(id: string): Promise<PlatformBenefit> {
     return await this.platformBenefitRepository.findOneBy({
       id: id
+    })
+  }
+
+
+  async findByName(name: string): Promise<PlatformBenefit[]> {
+    return await this.platformBenefitRepository.findBy({
+      name: Like(name)
+    })
+  }
+
+
+  async findByAmount(amount: number): Promise<PlatformBenefit[]> {
+    return await this.platformBenefitRepository.findBy({
+      amount: amount
     })
   }
 
@@ -36,4 +50,7 @@ export class PlatformBenefitRepository implements IPlatformBenefitRepository {
   }
 
 
+  async delete(platformBenefit: PlatformBenefit): Promise<void> {
+    if (typeof platformBenefit.id === 'string') this.platformBenefitRepository.delete({ id: platformBenefit.id })
+  }
 }
