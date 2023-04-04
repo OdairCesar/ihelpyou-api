@@ -1,6 +1,6 @@
 import { IPlatformPlanRepository } from "../../IPlatformPlanRepository";
 import { PlatformPlan } from "../../../entities/PlatformPlan"
-import { Repository } from "typeorm";
+import { Like, Repository } from "typeorm";
 import { PlatformPlanORM } from "../../../database/typeorm/entity/PlatformPlanORM";
 
 export class PlatformPlanRepository implements IPlatformPlanRepository {
@@ -17,9 +17,23 @@ export class PlatformPlanRepository implements IPlatformPlanRepository {
   }
   
 
-  async findByName(name: string): Promise<PlatformPlan> {
-    return await this.platformPlanRepository.findOneBy({
-      name: name
+  async findByName(name: string): Promise<Array<PlatformPlan>> {
+    return await this.platformPlanRepository.findBy({
+      name: Like(name)
+    })
+  }
+
+
+  async findByPeriodInMonth(periodInMonth: number): Promise<PlatformPlan[]> {
+    return await this.platformPlanRepository.findBy({
+      periodInMonth: periodInMonth
+    })
+  }
+
+
+  async findByValue(value: number): Promise<PlatformPlan[]> {
+    return await this.platformPlanRepository.findBy({
+      value: value
     })
   }
   
@@ -31,6 +45,11 @@ export class PlatformPlanRepository implements IPlatformPlanRepository {
 
   async update(platformPlan: PlatformPlan): Promise<void> {
     if (typeof platformPlan.id === 'string') this.platformPlanRepository.update({ id: platformPlan.id }, platformPlan)
+  }
+  
+
+  async delete(platformPlan: PlatformPlan): Promise<void> {
+    if (typeof platformPlan.id === 'string') this.platformPlanRepository.delete({ id: platformPlan.id })
   }
   
 

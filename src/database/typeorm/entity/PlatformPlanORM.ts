@@ -11,17 +11,17 @@ export class PlatformPlanORM {
   @Column()
   name: string
   
-  @Column()
+  @Column({ nullable: true })
   description: string
   
   @Column()
-  period: string
+  periodInMonth: number
   
   @Column()
   limit: string
   
   @Column()
-  value: string
+  value: number
   
   @OneToMany(type => CompanyStatusORM, platformPlan => PlatformPlanORM)
   companiesStatus: CompanyStatusORM[]
