@@ -40,6 +40,13 @@ import { createPlatformBenefitController } from "./useCases/PlatformBenefit/Crea
 import { deletePlatformBenefitController } from "./useCases/PlatformBenefit/DeletePlatformBenefit";
 import { modifyPlatformBenefitController } from "./useCases/PlatformBenefit/ModifyPlatformBenefit";
 import { readPlatformBenefitController } from "./useCases/PlatformBenefit/ReadPlatformBenefit";
+import { createPlatformPlanController } from "./useCases/PlatformPlan/CreatePlatformPlan";
+import { deletePlatformPlanController } from "./useCases/PlatformPlan/DeletePlatformPlan";
+import { modifyPlatformPlanController } from "./useCases/PlatformPlan/ModifyPlatformPlan";
+import { readPlatformPlanController } from "./useCases/PlatformPlan/ReadPlatformPlan";
+import { createServiceAnalysisController } from "./useCases/ServiceAnalysis/CreateServiceAnalysis";
+import { readServiceAnalysisController } from "./useCases/ServiceAnalysis/ReadServiceAnalysis";
+import { modifyServiceAnalysisController } from "./useCases/ServiceAnalysis/ModifyServiceAnalysis";
 
 const routes = Router()
 
@@ -133,7 +140,7 @@ routes.delete('/service', (request, response) => {
   return deleteServiceController.handle(request, response) 
 })
 
-routes.post('/service', (request, response) => {
+routes.post('/service/:id', (request, response) => {
   return modifyServiceController.handle(request, response) 
 })
 
@@ -148,7 +155,7 @@ routes.put('/company', (request, response) => {
   return createCompanyController.handle(request, response) 
 })
 
-routes.post('/company', (request, response) => {
+routes.post('/company/:id', (request, response) => {
   return modifyCompanyController.handle(request, response) 
 })
 
@@ -163,7 +170,7 @@ routes.put('/companyStatus', (request, response) => {
   return createCompanyStatusController.handle(request, response) 
 })
 
-routes.post('/companyStatus', (request, response) => {
+routes.post('/companyStatus/:id', (request, response) => {
   return modifyCompanyStatusController.handle(request, response) 
 })
 
@@ -182,7 +189,7 @@ routes.delete('/department', (request, response) => {
   return deleteDepartmentController.handle(request, response) 
 })
 
-routes.post('/department', (request, response) => {
+routes.post('/department/:id', (request, response) => {
   return modifyDepartmentController.handle(request, response) 
 })
 
@@ -197,7 +204,7 @@ routes.put('/order', (request, response) => {
   return createOrderController.handle(request, response) 
 })
 
-routes.post('/order', (request, response) => {
+routes.post('/order/:id', (request, response) => {
   return modifyOrderController.handle(request, response) 
 })
 
@@ -216,7 +223,7 @@ routes.delete('/orderEvaluation', (request, response) => {
   return deleteOrderEvaluationController.handle(request, response) 
 })
 
-routes.post('/orderEvaluation', (request, response) => {
+routes.post('/orderEvaluation/:id', (request, response) => {
   return modifyOrderEvaluationController.handle(request, response) 
 })
 
@@ -235,7 +242,7 @@ routes.delete('/platformBenefit', (request, response) => {
   return deletePlatformBenefitController.handle(request, response) 
 })
 
-routes.post('/platformBenefit', (request, response) => {
+routes.post('/platformBenefit/:id', (request, response) => {
   return modifyPlatformBenefitController.handle(request, response) 
 })
 
@@ -243,6 +250,39 @@ routes.get('/platformBenefit', (request, response) => {
   return readPlatformBenefitController.handle(request, response) 
 })
 
+
+
+
+routes.put('/platformPlan', (request, response) => {
+  return createPlatformPlanController.handle(request, response) 
+})
+
+routes.delete('/platformPlan', (request, response) => {
+  return deletePlatformPlanController.handle(request, response) 
+})
+
+routes.post('/platformPlan/:id', (request, response) => {
+  return modifyPlatformPlanController.handle(request, response) 
+})
+
+routes.get('/platformPlan', (request, response) => {
+  return readPlatformPlanController.handle(request, response) 
+})
+
+
+
+
+routes.put('/serviceAnalysis', (request, response) => {
+  return createServiceAnalysisController.handle(request, response) 
+})
+
+routes.post('/serviceAnalysis/:id', (request, response) => {
+  return modifyServiceAnalysisController.handle(request, response) 
+})
+
+routes.get('/serviceAnalysis', (request, response) => {
+  return readServiceAnalysisController.handle(request, response) 
+})
 
 
 

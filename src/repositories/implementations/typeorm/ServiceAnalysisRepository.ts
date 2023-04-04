@@ -29,6 +29,14 @@ export class ServiceAnalysisRepository implements IServiceAnalysisRepository {
       views: LessThanOrEqual(views)
     })
   }
+
+  async findByIdService(idService: string): Promise<ServiceAnalysis[]> {
+    return await this.serviceAnalysisRepository.findBy({
+      idService: {
+        id: idService
+      }
+    })
+  }
   
 
   async insert(serviceAnalysis: ServiceAnalysis): Promise<void> {

@@ -9,7 +9,7 @@ export class ServiceAnalysis {
   public timeMdPerUser: string
   public views: number
   public purchaseCancelled: number
-  public idCompanyService: any
+  public idService: any
 
   constructor(props: Omit<ServiceAnalysis, 'id'>, id?: string) {
     Object.assign(this, props)
