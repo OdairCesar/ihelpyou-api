@@ -47,6 +47,10 @@ import { readPlatformPlanController } from "./useCases/PlatformPlan/ReadPlatform
 import { createServiceAnalysisController } from "./useCases/ServiceAnalysis/CreateServiceAnalysis";
 import { readServiceAnalysisController } from "./useCases/ServiceAnalysis/ReadServiceAnalysis";
 import { modifyServiceAnalysisController } from "./useCases/ServiceAnalysis/ModifyServiceAnalysis";
+import { readStateController } from "./useCases/State/ReadState";
+import { createUserCardController } from "./useCases/UserCard/CreateUserCard";
+import { deleteUserCardController } from "./useCases/UserCard/DeleteUserCard";
+import { readUserCardController } from "./useCases/UserCard/ReadUserCard";
 
 const routes = Router()
 
@@ -282,6 +286,28 @@ routes.post('/serviceAnalysis/:id', (request, response) => {
 
 routes.get('/serviceAnalysis', (request, response) => {
   return readServiceAnalysisController.handle(request, response) 
+})
+
+
+
+
+routes.get('/state', (request, response) => {
+  return readStateController.handle(request, response) 
+})
+
+
+
+
+routes.put('/userCard', (request, response) => {
+  return createUserCardController.handle(request, response) 
+})
+
+routes.delete('/userCard', (request, response) => {
+  return deleteUserCardController.handle(request, response) 
+})
+
+routes.get('/userCard', (request, response) => {
+  return readUserCardController.handle(request, response) 
 })
 
 

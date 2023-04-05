@@ -36,4 +36,7 @@ export class UserCardRepository implements IUserCardRepository {
   }
   
   
+  async delete(userCard: UserCard): Promise<void> {
+    if (typeof userCard.id === 'string') this.userCardRepository.delete({ id: userCard.id })
+  }
 }

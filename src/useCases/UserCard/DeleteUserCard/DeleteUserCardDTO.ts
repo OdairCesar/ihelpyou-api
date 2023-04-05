@@ -1,0 +1,3 @@
+interface IUserCardRequestDTO{
+  id: string
+}
