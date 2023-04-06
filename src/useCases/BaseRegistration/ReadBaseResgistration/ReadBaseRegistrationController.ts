@@ -3,7 +3,9 @@ import { ReadBaseRegistrationUseCase } from "./ReadBaseRegistrationUseCase";
 import { IReadBaseRegistrationRequestDTO } from "./ReadBaseRegistrationDTO";
 
 export class ReadBaseRegistrationController {
-  constructor(private readBaseRegistrationUseCase: ReadBaseRegistrationUseCase) {}
+  constructor(
+    private readBaseRegistrationUseCase: ReadBaseRegistrationUseCase
+  ) { }
 
   async handle(request: Request, response: Response): Promise<Response> {
     const { id, idAuth, idCity } = request.body;

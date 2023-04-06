@@ -8,17 +8,26 @@ export class ReadBaseRegistrationUseCase {
   ) {}
 
   async execute(data: IReadBaseRegistrationRequestDTO) {
-    let basesRegistration: BaseRegistration[]
+    let basesRegistration: BaseRegistration[] = []
 
     if (data.id) {
-      basesRegistration.push(await this.BaseRegistrationRepository.findById(data.id))
+
+      let line = await this.BaseRegistrationRepository.findById(data.id)
+      if (line) basesRegistration.push(line);
+
     } else if (data.idAuth) {
-      basesRegistration.push(await this.BaseRegistrationRepository.findByIdLogin(data.idAuth))
+
+      let line = await this.BaseRegistrationRepository.findByIdLogin(data.idAuth)
+      if (line) basesRegistration.push(line);
+
     } else if (data.idCity) {
-      basesRegistration = await this.BaseRegistrationRepository.findByIdCidade(data.idCity)
+
+      let lines = await this.BaseRegistrationRepository.findByIdCidade(data.idCity)
+      if (lines) basesRegistration = lines
+
     }
 
-    if (basesRegistration) return basesRegistration
+    if (basesRegistration.length > 0) return basesRegistration
 
     throw new Error('Não houve resultado nas buscas')
   }

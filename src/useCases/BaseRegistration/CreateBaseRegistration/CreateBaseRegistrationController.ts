@@ -9,22 +9,29 @@ export class CreateBaseRegistrationController {
   ) { }
 
   async handle(request: Request, response: Response) {
-    const { id, name, fone, image, address, addressNumber, neighborhood, active, idCity, idAuth } = request.body
+    const { name, fone, image, address, addressNumber, neighborhood, idCity, idAuth } = request.body
 
-    if (!id || !name || !fone || !address || !addressNumber || !neighborhood || !active || !idCity || !idAuth) {
-      response.status(400).json({
+    if (
+      !name || typeof name !== "string" ||
+      !fone || typeof fone !== "number" || 
+      !address || typeof address !== "string" ||
+      !addressNumber || typeof addressNumber !== "number" || 
+      !neighborhood || typeof neighborhood !== "string" ||
+      !idCity || typeof idCity !== "string" ||
+      !idAuth || typeof idAuth !== "string"
+    ) {
+      return response.status(400).json({
         message: "Está faltando informações"
       })
     }
 
     let dto: ICreateBaseRegistrationRequestDTO = { 
-      id,
       name,
       fone,
       address,
       addressNumber,
       neighborhood,
-      active,
+      active: true,
       idCity,
       idAuth
     }
@@ -33,8 +40,8 @@ export class CreateBaseRegistrationController {
       dto.image = image
     }
 
-    try{
-      this.createBaseRegistrationUseCase.execute(dto)
+    try {
+      await this.createBaseRegistrationUseCase.execute(dto)
 
       response.status(201).send()
     } catch (err) {

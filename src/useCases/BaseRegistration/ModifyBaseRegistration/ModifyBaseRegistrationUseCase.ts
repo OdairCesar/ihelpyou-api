@@ -10,7 +10,7 @@ export class ModifyBaseRegistrationUseCase {
     const line = await this.baseRegistrationRepository.findById(data.id)
 
     if (!line) {
-      throw Error('O usuario informato não existe')
+      throw new Error('O usuario informato não existe')
     }
 
     if (data.fone) line.fone = data.fone;
@@ -19,7 +19,7 @@ export class ModifyBaseRegistrationUseCase {
     if (data.address) line.address = data.address;
     if (data.addressNumber) line.addressNumber = data.addressNumber;
     if (data.neighborhood) line.neighborhood = data.neighborhood;
-    if (data.active) line.active = data.active;
+    if (typeof data.active === "boolean") line.active = data.active;
     if (data.idCity) line.idCity = data.idCity
 
     await this.baseRegistrationRepository.update(line)

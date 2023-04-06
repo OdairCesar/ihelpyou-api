@@ -1,5 +1,4 @@
 export interface ICreateBaseRegistrationRequestDTO {
-  id: any
   name: string
   fone: number
   image?: string

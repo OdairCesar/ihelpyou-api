@@ -12,7 +12,7 @@ export class ModifyBaseRegistrationController {
     const { name, fone, image, address, addressNumber, neighborhood, active, idCity } = request.body
     const id = request.params.id
 
-    if (!name && !fone && !image && !address && !addressNumber && !neighborhood && !active && !idCity) {
+    if (!name && !fone && !image && !address && !addressNumber && !neighborhood && typeof active !== "boolean" && !idCity) {
       response.status(400).json({
         message: "Não foi informado qual a modificação"
       })
@@ -27,11 +27,11 @@ export class ModifyBaseRegistrationController {
     if (address && typeof address === 'string') dto.address = address;
     if (addressNumber && typeof addressNumber === 'number') dto.addressNumber = addressNumber;
     if (neighborhood && typeof neighborhood === 'string') dto.neighborhood = neighborhood;
-    if (active && typeof active === 'boolean') dto.active = active;
+    if (typeof active === 'boolean') dto.active = active;
     if (idCity && typeof idCity === 'string') dto.idCity = idCity;
 
     try{
-      this.modifyBaseRegistrationUseCase.execute(dto)
+      await this.modifyBaseRegistrationUseCase.execute(dto)
 
       response.status(201).send()
     } catch (err) {
