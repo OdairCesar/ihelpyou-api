@@ -11,8 +11,11 @@ export class CompanyRepository implements ICompanyRepository {
 
 
   async findById(id: string): Promise<Company> {
-    return await this.companyRepository.findOneBy({
-      id: id,
+    return await this.companyRepository.findOne({
+      where: {
+        id: id,
+      },
+      relations: [ "idBaseRegistration", "idStatus" ],
     })
   }
 
@@ -39,10 +42,13 @@ export class CompanyRepository implements ICompanyRepository {
   
 
   async findByIdBaseRegistration(idBaseRegistration: string): Promise<Company> {
-    return await this.companyRepository.findOneBy({
-      idBaseRegistration: {
-        id: idBaseRegistration
-      }
+    return await this.companyRepository.findOne({
+      where: {
+        idBaseRegistration: {
+          id: idBaseRegistration
+        }
+      },
+      relations: [ "idBaseRegistration", "idStatus" ]
     })
   }
 

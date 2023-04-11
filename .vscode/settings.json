@@ -58,7 +58,7 @@
     
     "screencastMode.onlyKeyboardShortcuts": true,
     
-    "material-icon-theme.activeIconPack": "nest",
+    "material-icon-theme.activeIconPack": "angular",
     "material-icon-theme.folders.associations": {
       "infra": "app",
       "entities": "class",

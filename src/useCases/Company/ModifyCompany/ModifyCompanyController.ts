@@ -28,7 +28,7 @@ export class ModifyCompanyController {
     if (idStatus && typeof idStatus === 'string') dto.idStatus = idStatus;
     
     try{
-      this.modifyCompanyUseCase.execute(dto)
+      await this.modifyCompanyUseCase.execute(dto)
 
       response.status(201).send()
     } catch (err) {

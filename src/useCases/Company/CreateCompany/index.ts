@@ -5,7 +5,6 @@ import { CompanyStatusORM } from "../../../database/typeorm/entity/CompanyStatus
 import { BaseRegistrationRepository } from "../../../repositories/implementations/typeorm/BaseRegistrationRepository";
 import { CompanyRepository } from "../../../repositories/implementations/typeorm/CompanyRepository";
 import { CompanyStatusRepository } from "../../../repositories/implementations/typeorm/CompanyStatusRepository";
-import { CreateCompanyStatusUseCase } from "../../CompanyStatus/CreateCompanyStatus/CreateCompanyStatusUseCase";
 import { CreateCompanyController } from "./CreateCompanyController";
 import { CreateCompanyUseCase } from "./CreateCompanyUseCase";
 
@@ -27,13 +26,8 @@ const createCompanyUseCase = new CreateCompanyUseCase(
   companyStatusRepository
 ) 
 
-const createCompanyStatusUseCase = new CreateCompanyStatusUseCase(
-  companyStatusRepository
-)
-
 const createCompanyController = new CreateCompanyController(
   createCompanyUseCase,
-  createCompanyStatusUseCase
 )
 
 export { createCompanyController, createCompanyUseCase }

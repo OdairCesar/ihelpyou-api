@@ -18,13 +18,13 @@ export class CompanyORM {
   @Column({ nullable: true })
   description: string
 
-  @Column({ nullable: true })
+  @Column({ type: 'bigint', nullable: true })
   mei: number
 
-  @Column({ nullable: true })
+  @Column({ type: 'bigint', nullable: true })
   cnpj: number
 
-  @Column({ nullable: true })
+  @Column({ type: 'bigint', nullable: true })
   cpf: number
 
   @OneToOne(type => BaseRegistrationORM, company => CompanyORM)

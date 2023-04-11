@@ -13,38 +13,41 @@ export class ModifyCompanyUseCase {
     const line = await this.companyRepository.findById(data.id)
 
     if (!line) {
-      throw Error('O usuario informato não existe')
+      throw new Error('O usuario informato não existe')
     }
 
-    if (data.mei) {
-      if (!cnpjValidator.isValid(data.mei.toString())) {
-        throw Error("MEI informato é invalido")
-      }
+    if (data.mei && data.mei != line.mei) {
+      const searchMEI = await this.companyRepository.findByMEI(data.mei)
+
+      if (searchMEI) throw new Error('MEI Documento informato já foi utilizado em outra empresa');
+      if (!cnpjValidator.isValid(data.mei.toString())) throw new Error("MEI informato é invalido");
       
       line.mei = data.mei;
     }
     
-    if (data.cnpj) {
-      if (!cnpjValidator.isValid(data.cnpj.toString())) {
-        throw Error("CNPJ informato é invalido")
-      }
+    if (data.cnpj && data.cnpj != line.cnpj) {
+      const searchCNPJ = await this.companyRepository.findByCNPJ(data.cnpj)
+
+      if (searchCNPJ) throw new Error('cnpj Documento informato já foi utilizado em outra empresa');
+      if (!cnpjValidator.isValid(data.cnpj.toString())) throw new Error("CNPJ informato é invalido");
       
       line.cnpj = data.cnpj;
     }
 
-    if (data.cpf) {
-      if (!cpfValidator.isValid(data.cpf.toString())) {
-        throw Error("CPF informato é invalido")
-      }
+    if (data.cpf && data.cpf != line.cpf) {
+      const searchCPF = await this.companyRepository.findByCPF(data.cpf)
+
+      if (searchCPF.length > 0) throw new Error('cpf Documento informato já foi utilizado em outra empresa');
+      if (!cpfValidator.isValid(data.cpf.toString())) throw new Error("CPF informato é invalido");
 
       line.cpf = data.cpf;
     }
     
     if (data.idStatus) {
-      const companyStatus = this.companyStatusRepository.findById(data.idStatus)
+      const companyStatus = await this.companyStatusRepository.findById(data.idStatus)
 
       if (!companyStatus) {
-        throw Error('Status informato não existe')
+        throw new Error('Status informato não existe')
       }
       
       line.idStatus = data.idStatus;
