@@ -9,24 +9,30 @@ export class CreateCompanyStatusController {
   ) { }
 
   async handle(request: Request, response: Response) {
-    const { paid, restriction, dateAdmission, activated, idPlan } = request.body
+    const { restriction, dateAdmission, activated, idPlan, idCompany } = request.body
 
-    if (!paid || !restriction || !dateAdmission || !activated || !idPlan) {
+    if (!idPlan || !idCompany) {
       response.status(400).json({
-        message: "Para criar o Status da empre via request é necessario todas as informações"
+        message: "Para criar o Status da empresa é necessario saber qual o plano escolhido"
       })
     }
 
-    let dto: ICreateCompanyStatusRequestDTO = { 
-      paid, 
-      restriction, 
-      dateAdmission, 
-      activated, 
-      idPlan
-    }
+    let dto: ICreateCompanyStatusRequestDTO = { idPlan, idCompany }
 
+    if (typeof restriction === "boolean") dto.restriction = restriction;
+    if (typeof activated === "boolean") dto.activated = activated;
+
+    if (dateAdmission) {
+      if (dateAdmission instanceof Date) {
+        dto.dateAdmission = dateAdmission;
+      } else {
+        var dateArr = dateAdmission.split('/')
+        dto.dateAdmission = new Date(dateArr[2], dateArr[1], dateArr[0]);
+      }
+    }
+    
     try{
-      this.createCompanyStatusUseCase.execute(dto)
+      await this.createCompanyStatusUseCase.execute(dto)
 
       response.status(201).send()
     } catch (err) {

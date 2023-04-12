@@ -8,7 +8,7 @@ export class ReadCompanyStatusUseCase {
   ) {}
 
   async execute(data: IReadCompanyStatusRequestDTO) {
-    let companiesStatus: CompanyStatus[]
+    let companiesStatus: CompanyStatus[] = []
 
     if (data.id) {
       companiesStatus.push(await this.companyStatusRepository.findById(data.id))
@@ -24,7 +24,7 @@ export class ReadCompanyStatusUseCase {
       companiesStatus = await this.companyStatusRepository.findByIdPlan(data.idPlan)
     }
 
-    if (companiesStatus) return companiesStatus
+    if (companiesStatus.length > 0) return companiesStatus
 
     throw new Error('Não houve resultado nas buscas')
   }

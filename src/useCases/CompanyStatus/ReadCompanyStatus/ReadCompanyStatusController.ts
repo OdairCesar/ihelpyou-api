@@ -17,16 +17,20 @@ export class ReadCompanyStatusController {
     let dto: IReadCompanyStatusRequestDTO = {};
 
     if (id && typeof id === 'string') dto.id = id;
-    if (paid && typeof paid === 'boolean') dto.paid = paid;
-    if (restriction && typeof restriction === 'boolean') dto.restriction = restriction;
-    if (activated && typeof activated === 'boolean') dto.activated = activated;
+    if (typeof paid === 'boolean') dto.paid = paid;
+    if (typeof restriction === 'boolean') dto.restriction = restriction;
+    if (typeof activated === 'boolean') dto.activated = activated;
     if (idPlan && typeof idPlan === 'string') dto.idPlan = idPlan;
     
     if (dateAdmission) {
       if (dateAdmission instanceof Date) {
         dto.dateAdmission = dateAdmission;
       } else {
-        dto.dateAdmission = new Date(dateAdmission);
+        var dateArr = dateAdmission.split('/')
+        dto.dateAdmission = new Date()
+        dto.dateAdmission.setFullYear(dateArr[2])
+        dto.dateAdmission.setMonth(dateArr[1] - 1)
+        dto.dateAdmission.setDate(dateArr[0])
       }
     }
 

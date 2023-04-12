@@ -17,23 +17,20 @@ export class ModifyCompanyStatusUseCase {
       if (platformPlan) {
         line.idPlan = data.idPlan
       } else {
-        throw Error('Plano informato não existe')
+        throw new Error('Plano informato não existe')
       }
     }
 
-    if (data.paid) line.paid = data.paid
-
-    if (data.activated) line.activated = data.activated;
+    if (typeof data.paid === "boolean") line.paid = data.paid;
+    if (typeof data.activated === "boolean") line.activated = data.activated;
+    if (typeof data.restriction === "boolean") line.restriction = data.restriction;
     
     if (data.dateAdmission) {
-      if (!line.dateAdmission || data.dateAdmission > line.dateAdmission) {
-        line.dateAdmission = data.dateAdmission;
-      } else {
-        throw Error('Data de admissão informata, não é valida')
-      }
-    }
+      var dataInJS = new Date(line.dateAdmission)
 
-    if (data.restriction) line.restriction = data.restriction;
+      if (!line.dateAdmission || data.dateAdmission > dataInJS) line.dateAdmission = data.dateAdmission;
+      else throw new Error('Data de admissão informata, não é valida');
+    }
 
     await this.companyStatusRepository.update(line);
   }

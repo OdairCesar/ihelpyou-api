@@ -9,11 +9,17 @@ export class ModifyCompanyStatusController {
   ) { }
 
   async handle(request: Request, response: Response) {
-    const { restriction, dateAdmission, activated, idPlan } = request.body
+    const { paid, restriction, dateAdmission, activated, idPlan } = request.body
     const id = request.params.id
     let dto: IModifyCompanyStatusRequestDTO = { id }
 
-    if (!restriction && !dateAdmission && !activated && !idPlan) {
+    if (
+      typeof paid !== "boolean" && 
+      typeof restriction !== "boolean" && 
+      typeof activated !== "boolean" && 
+      !dateAdmission && 
+      !idPlan
+    ) {
       response.status(400).json({
         message: "Não foi informado qual a modificação"
       })
@@ -23,16 +29,21 @@ export class ModifyCompanyStatusController {
       if (dateAdmission instanceof Date) {
         dto.dateAdmission = dateAdmission;
       } else {
-        dto.dateAdmission = new Date(dateAdmission);
+        var dateArr = dateAdmission.split('/')
+        dto.dateAdmission = new Date()
+        dto.dateAdmission.setFullYear(dateArr[2])
+        dto.dateAdmission.setMonth(dateArr[1] - 1)
+        dto.dateAdmission.setDate(dateArr[0])
       }
     }
     
-    if (restriction && typeof restriction === 'boolean') dto.restriction = restriction;
-    if (activated && typeof activated === 'boolean') dto.activated = activated;
+    if (typeof paid === 'boolean') dto.paid = paid;
+    if (typeof restriction === 'boolean') dto.restriction = restriction;
+    if (typeof activated === 'boolean') dto.activated = activated;
     if (idPlan && typeof idPlan === 'string') dto.idPlan = idPlan;
     
     try{
-      this.modifyCompanyStatusUseCase.execute(dto)
+      await this.modifyCompanyStatusUseCase.execute(dto)
 
       response.status(201).send()
     } catch (err) {
