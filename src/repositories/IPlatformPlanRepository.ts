@@ -1,6 +1,7 @@
 import { PlatformPlan } from "../entities/PlatformPlan"
 
 export interface IPlatformPlanRepository {
+  findAll(): Promise<Array<PlatformPlan>>
   findById(id: string): Promise<PlatformPlan>
   findByName(name: string): Promise<Array<PlatformPlan>>
   findByPeriodInMonth(periodInMonth: number): Promise<Array<PlatformPlan>>

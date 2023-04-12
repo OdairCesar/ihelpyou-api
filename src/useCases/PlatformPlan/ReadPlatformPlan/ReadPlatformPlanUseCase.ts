@@ -8,7 +8,7 @@ export class ReadPlatformPlanUseCase {
   ) {}
 
   async execute(data: IReadPlatformPlanRequestDTO) {
-    let ordersEvaluations: PlatformPlan[]
+    let ordersEvaluations: PlatformPlan[] = []
 
     if (data.id) {
       ordersEvaluations.push(await this.platformPlanRepository.findById(data.id))
@@ -18,9 +18,12 @@ export class ReadPlatformPlanUseCase {
       ordersEvaluations = await this.platformPlanRepository.findByPeriodInMonth(data.periodInMonth)
     } else if (data.value) {
       ordersEvaluations = await this.platformPlanRepository.findByValue(data.value)
-    } 
+    } else {
+      ordersEvaluations = await this.platformPlanRepository.findAll()
+    }
 
-    if (ordersEvaluations) return ordersEvaluations
+    if (ordersEvaluations.length > 0) return ordersEvaluations
+
 
     throw new Error('Não houve resultado nas buscas')
   }

@@ -8,8 +8,14 @@ export class CreatePlatformPlanUseCase {
   ) { }
 
   async execute(data: ICreatePlatformPlanRequestDTO) {
-    const platformPlan = new PlatformPlan(data)
+    const platformPlan = await this.platformPlanRepository.findByPeriodInMonth(data.periodInMonth)
 
-    this.platformPlanRepository.insert(platformPlan)
+    if (platformPlan.length > 0) {
+      throw new Error('Já um plano usando essa quantidade de mês')
+    }
+
+    const newPlatformPlan = new PlatformPlan(data)
+
+    await this.platformPlanRepository.insert(newPlatformPlan)
   }
 }

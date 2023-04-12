@@ -27,7 +27,7 @@ export class ModifyPlatformPlanController {
     if (value && typeof value === 'number') dto.value = value
 
     try{
-      this.modifyPlatformPlanUseCase.execute(dto)
+      await this.modifyPlatformPlanUseCase.execute(dto)
 
       response.status(201).send()
     } catch (err) {

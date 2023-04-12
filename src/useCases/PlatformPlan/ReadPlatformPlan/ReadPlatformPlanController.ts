@@ -8,12 +8,6 @@ export class ReadPlatformPlanController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { id, name, periodInMonth, value } = request.body;
 
-    if (!id && !name && !periodInMonth && !value) {
-      return response.status(400).json({
-        message: "Não a parametros para a busca",
-      });
-    }
-
     let dto: IReadPlatformPlanRequestDTO = {};
 
     if (id && typeof id === 'string') dto.id = id; 

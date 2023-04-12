@@ -8,7 +8,10 @@ export class PlatformPlanRepository implements IPlatformPlanRepository {
   constructor (
     private platformPlanRepository: Repository<PlatformPlanORM>
   ) { }
-
+  
+  async findAll(): Promise<Array<PlatformPlan>> {
+    return await this.platformPlanRepository.find()
+  }
 
   async findById(id: string): Promise<PlatformPlan> {
     return await this.platformPlanRepository.findOneBy({
@@ -19,7 +22,7 @@ export class PlatformPlanRepository implements IPlatformPlanRepository {
 
   async findByName(name: string): Promise<Array<PlatformPlan>> {
     return await this.platformPlanRepository.findBy({
-      name: Like(name)
+      name: Like('%'+name+'%')
     })
   }
 

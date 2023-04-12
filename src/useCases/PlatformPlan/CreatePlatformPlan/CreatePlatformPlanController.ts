@@ -18,8 +18,7 @@ export class CreatePlatformPlanController {
     }
 
     let dto: ICreatePlatformPlanRequestDTO = { 
-      name, 
-      description, 
+      name,
       periodInMonth, 
       limit,
       value
@@ -28,7 +27,7 @@ export class CreatePlatformPlanController {
     if (description && typeof description === 'string') dto.description = description;
 
     try{
-      this.createPlatformPlanUseCase.execute(dto)
+      await this.createPlatformPlanUseCase.execute(dto)
 
       response.status(201).send()
     } catch (err) {

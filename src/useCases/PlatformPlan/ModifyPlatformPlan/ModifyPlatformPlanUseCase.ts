@@ -8,9 +8,14 @@ export class ModifyPlatformPlanUseCase {
 
   async execute(data: IModifyPlatformPlanRequestDTO) {
     const line = await this.platformPlanRepository.findById(data.id)
+    const existsQdtMonth = await this.platformPlanRepository.findByPeriodInMonth(data.periodInMonth)
+
+    if (existsQdtMonth.length > 0 && data.periodInMonth != line.periodInMonth) {
+      throw new Error('Essa quantidade de mês já foi utilizado em outro plano')
+    }
 
     if (!line) {
-      throw Error('A avaliação de pedido informato, não existe')
+      throw new Error('A avaliação de pedido informato, não existe')
     }
 
     if (data.name) line.name = data.name;

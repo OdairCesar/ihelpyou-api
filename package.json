@@ -8,8 +8,8 @@
     "start": "ts-node-dev --transpile-only --respawn --ignore-watch node_modules src/server.ts",
     "start:dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "typeorm": "ts-node ./node_modules/typeorm/cli.js",
-    "migration:generate": "yarn typeorm migration:generate -n",
-    "migration:run": "yarn typeorm migration:run"
+    "migration:generate": "npx typeorm-ts-node-commonjs migration:generate",
+    "migration:run": "npx typeorm-ts-node-commonjs migration:run"
   },
   "keywords": [],
   "author": "Odair Cesar",

@@ -1,6 +1,6 @@
 import { IBaseRegistrationRepository } from "../../IBaseRegistrationRepository"
 import { BaseRegistration } from "../../../entities/BaseRegistration"
-import { Repository } from "typeorm";
+import { Like, Repository } from "typeorm";
 import { BaseRegistrationORM } from "../../../database/typeorm/entity/BaseRegistrationORM"
 
 export class BaseRegistrationRepository implements IBaseRegistrationRepository {
@@ -19,7 +19,7 @@ export class BaseRegistrationRepository implements IBaseRegistrationRepository {
 
   async findByName(name: string): Promise<Array<BaseRegistration>> {
     return await this.baseRegistrationRepository.findBy({
-      name: name
+      name: Like('%'+name+'%')
     })
   }
 
