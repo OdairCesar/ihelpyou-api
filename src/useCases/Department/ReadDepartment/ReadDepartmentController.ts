@@ -8,12 +8,6 @@ export class ReadDepartmentController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { id, name } = request.body;
 
-    if (!id && !name) {
-      return response.status(400).json({
-        message: "Não a parametros para a busca",
-      });
-    }
-
     let dto: IReadDepartmentRequestDTO = { };
 
     if (id && typeof id == 'string') dto.id = id;

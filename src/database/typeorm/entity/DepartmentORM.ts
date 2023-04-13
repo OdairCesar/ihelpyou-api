@@ -12,7 +12,7 @@ export class DepartmentORM {
   @Column()
   name: string;
 
-  @Column({ nullable: true})
+  @Column({ type: 'varchar', length: 2000, nullable: true})
   description: string;
 
   @Column({ nullable: true})

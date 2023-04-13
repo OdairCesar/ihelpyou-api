@@ -9,29 +9,21 @@ export class CreateDepartmentController {
   ) { }
 
   async handle(request: Request, response: Response) {
-    const { id, name, description, image } = request.body
+    const { name, description, image } = request.body
 
-    if (!id || !name) {
+    if (!name) {
       response.status(400).json({
         message: "Está faltando parametros"
       })
     }
 
-    let dto: ICreateDepartmentRequestDTO = { 
-      id,
-      name
-    }
+    let dto: ICreateDepartmentRequestDTO = { name }
 
-    if (description) {
-      dto.description = description
-    }
-
-    if (image) {
-      dto.image = image
-    }
+    if (description && typeof description === "string") dto.description = description;
+    if (image && typeof image === "string") dto.image = image;
 
     try{
-      this.createDepartmentUseCase.execute(dto)
+      await this.createDepartmentUseCase.execute(dto)
 
       response.status(201).send()
     } catch (err) {

@@ -25,7 +25,7 @@ export class ModifyDepartmentController {
     if (image && typeof image == 'string') dto.image = image;
 
     try{
-      this.modifyDepartmentUseCase.execute(dto)
+      await this.modifyDepartmentUseCase.execute(dto)
 
       response.status(201).send()
     } catch (err) {

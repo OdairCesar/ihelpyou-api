@@ -8,14 +8,8 @@ export class CreateDepartmentUseCase {
   ) { }
 
   async execute(data: ICreateDepartmentRequestDTO) {
-    const department = this.departmentRepository.findById(data.id)
-
-    if (department) {
-      throw Error('Esse departamento já existe')
-    }
-
     const newDepartment = new Department(data)
 
-    this.departmentRepository.insert(newDepartment)
+    await this.departmentRepository.insert(newDepartment)
   }
 }

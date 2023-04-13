@@ -10,7 +10,7 @@ export class ModifyDepartmentUseCase {
     const line = await this.departmentRepository.findById(data.id)
 
     if (!line) {
-      throw Error('O departamento informato não existe')
+      throw new Error('O departamento informato não existe')
     }
 
     if (data.name) line.name = data.name;

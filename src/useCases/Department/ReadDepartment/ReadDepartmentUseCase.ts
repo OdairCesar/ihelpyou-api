@@ -8,15 +8,17 @@ export class ReadDepartmentUseCase {
   ) {}
 
   async execute(data: IReadDepartmentRequestDTO) {
-    let department: Department[]
+    let department: Department[] = []
 
     if (data.id) {
       department.push(await this.departmentRepository.findById(data.id))
     } else if (data.name) {
       department = await this.departmentRepository.findByName(data.name)
+    } else {
+      department = await this.departmentRepository.findAll()
     }
 
-    if (department) return department
+    if (department.length > 0) return department
 
     throw new Error('Não houve resultado nas buscas')
   }

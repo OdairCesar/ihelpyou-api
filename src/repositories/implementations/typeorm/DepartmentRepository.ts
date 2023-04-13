@@ -11,6 +11,11 @@ export class DepartmentRepository implements IDepartmentRepository {
   ) { }
 
 
+  async findAll(): Promise<Array<Department>> {
+    return await this.departmentRepository.find()
+  }
+  
+  
   async findById(id: string): Promise<Department> {
     return await this.departmentRepository.findOneBy({
       id: id
@@ -20,7 +25,7 @@ export class DepartmentRepository implements IDepartmentRepository {
 
   async findByName(name: string): Promise<Array<Department>> {
     return await this.departmentRepository.findBy({
-      name: Like(name),
+      name: Like('%'+name+'%'),
     })
   }
   
