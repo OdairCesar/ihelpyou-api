@@ -11,22 +11,22 @@ import { CompanyRepository } from "../../../repositories/implementations/typeorm
 import { CreateServiceUseCase } from "./CreateServiceUseCase";
 import { CreateServiceController } from "./CreateServiceController";
 
-const serviceRepository = new ServiceRepository(
+const typeormServiceRepository = new ServiceRepository(
   dataSource.getRepository(ServiceORM)
 )
 
-const departmentRepository = new DepartmentRepository(
+const typeormDepartmentRepository = new DepartmentRepository(
   dataSource.getRepository(DepartmentORM)
 )
 
-const companyRepository = new CompanyRepository(
+const typeormCompanyRepository = new CompanyRepository(
   dataSource.getRepository(CompanyORM)
 )
 
 const createServiceUseCase = new CreateServiceUseCase(
-  serviceRepository,
-  departmentRepository,
-  companyRepository
+  typeormServiceRepository,
+  typeormDepartmentRepository,
+  typeormCompanyRepository
 ) 
 
 const createServiceController = new CreateServiceController(

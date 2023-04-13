@@ -9,7 +9,7 @@ export class CreateServiceController {
   ) { }
 
   async handle(request: Request, response: Response) {
-    const { name, description, minTime, maxTime, image, value, idDepartment, idCompany } = request.body
+    const { name, description, minTimeInDay, maxTimeInDay, image, value, idDepartment, idCompany } = request.body
 
     if (!name || !image || !value || !idDepartment || !idCompany) {
       response.status(400).json({
@@ -26,11 +26,11 @@ export class CreateServiceController {
     }
 
     if (description && typeof description === 'string') dto.description = description;
-    if (minTime && typeof minTime === 'string') dto.minTime = minTime;
-    if (maxTime && typeof maxTime === 'string') dto.maxTime = maxTime;
+    if (minTimeInDay && typeof minTimeInDay === 'number') dto.minTimeInDay = minTimeInDay;
+    if (maxTimeInDay && typeof maxTimeInDay === 'number') dto.maxTimeInDay = maxTimeInDay;
 
     try {
-      this.createServiceUseCase.execute(dto)
+      await this.createServiceUseCase.execute(dto)
 
       response.status(201).send()
     } catch (err) {

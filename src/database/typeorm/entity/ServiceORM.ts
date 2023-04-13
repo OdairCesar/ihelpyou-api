@@ -14,19 +14,19 @@ export class ServiceORM {
   @Column()
   name: string
   
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', length: 2000, nullable: true })
   description: string
   
-  @Column({ nullable: true })
-  minTime: string
+  @Column({ type: 'float', nullable: true })
+  minTimeInDay: number
   
-  @Column({ nullable: true })
-  maxTime: string
+  @Column({ type: 'float', nullable: true })
+  maxTimeInDay: number
   
   @Column()
   image: string
   
-  @Column()
+  @Column({ type: 'float' })
   value: number
 
   @OneToMany(type => OrderORM, service => ServiceORM)

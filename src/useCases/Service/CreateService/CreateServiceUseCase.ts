@@ -12,19 +12,15 @@ export class CreateServiceUseCase {
   ) {}
 
   async execute(data: ICreateServiceRequestDTO) {
-    const company = this.companyRepository.findById(data.idCompany);
-    const department = this.departmentRepository.findById(data.idDepartment);
+    const company = await this.companyRepository.findById(data.idCompany);
+    const department = await this.departmentRepository.findById(data.idDepartment);
 
-    if (!department) {
-      throw Error("Não foi possivel encontrar o departamento do serviço");
-    }
+    if (!department) throw Error("Não foi possivel encontrar o departamento do serviço");
 
-    if (!company) {
-      throw Error("Não foi possivel encontrar a empresa do serviço");
-    }
+    if (!company) throw Error("Não foi possivel encontrar a empresa do serviço");
 
     const service = new Service(data)
 
-    this.serviceRepository.insert(service);
+    await this.serviceRepository.insert(service);
   }
 }

@@ -5,8 +5,8 @@ export class Service {
   public readonly id: any
   public name: string
   public description?: string
-  public minTime?: string
-  public maxTime?: string
+  public minTimeInDay?: number
+  public maxTimeInDay?: number
   public image: string
   public value: number
   public idDepartment: any

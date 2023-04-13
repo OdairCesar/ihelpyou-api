@@ -2,8 +2,8 @@ export interface IReadServiceRequestDTO {
   id?: string
   name?: string
   description?: string
-  minTime?: string
-  maxTime?: string
+  minTimeInDay?: number
+  maxTimeInDay?: number
   idDepartment?: string
   idCompany?: string
 }

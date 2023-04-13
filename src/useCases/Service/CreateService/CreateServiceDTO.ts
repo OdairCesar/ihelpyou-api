@@ -1,8 +1,8 @@
 export interface ICreateServiceRequestDTO {
   name: string
   description?: string
-  minTime?: string
-  maxTime?: string
+  minTimeInDay?: number
+  maxTimeInDay?: number
   image: string
   value: number
   idDepartment: string

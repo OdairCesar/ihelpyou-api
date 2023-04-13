@@ -31,16 +31,16 @@ export class ServiceRepository implements IServiceRepository {
   }
   
 
-  async findByMinimumTime(minimumTime: string): Promise<Array<Service>> {
+  async findByMinimumTime(minimumTime: number): Promise<Array<Service>> {
     return await this.serviceRepository.findBy({
-      minTime: MoreThanOrEqual(minimumTime),
+      minTimeInDay: MoreThanOrEqual(minimumTime),
     })
   }
   
 
-  async findByMaximumTime(maximumTime: string): Promise<Array<Service>> {
+  async findByMaximumTime(maximumTime: number): Promise<Array<Service>> {
     return await this.serviceRepository.findBy({
-      maxTime: LessThanOrEqual(maximumTime),
+      maxTimeInDay: LessThanOrEqual(maximumTime),
     })
   }
   
