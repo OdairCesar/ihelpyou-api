@@ -8,7 +8,7 @@ export class ReadOrderUseCase {
   ) {}
 
   async execute(data: IReadOrderRequestDTO) {
-    let orders: Order[]
+    let orders: Order[] = []
 
     if (data.id) {
       orders.push(await this.orderRepository.findById(data.id))
@@ -24,9 +24,11 @@ export class ReadOrderUseCase {
       orders = await this.orderRepository.findByIdService(data.idService)
     } else if (data.idUserCard) {
       orders = await this.orderRepository.findByIdUserCard(data.idUserCard)
+    } else {
+      orders = await this.orderRepository.findAll()
     }
 
-    if (orders) return orders
+    if (orders.length > 0) return orders
 
     throw new Error('Não houve resultado nas buscas')
   }

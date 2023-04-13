@@ -1,6 +1,7 @@
 import { Order } from "../entities/Order"
 
 export interface IOrderRepository {
+  findAll(): Promise<Array<Order>>
   findById(id: string): Promise<Order>
   findBySttService(sttService: 'Cancelado' | 'Concluido' | 'Em andamento' | 'Confirmado' | 'Esperando Confirmação'): Promise<Array<Order>>
   findBySttPayment(sttPayment: 'Cancelado' | 'Confirmado' | 'Aguardado'): Promise<Array<Order>>

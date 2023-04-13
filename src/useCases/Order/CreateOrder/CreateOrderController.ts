@@ -28,12 +28,13 @@ export class CreateOrderController {
       if (dateStart instanceof Date) {
         dto.dateStart = dateStart;
       } else {
-        dto.dateStart = new Date(dateStart);
+        var dateArr = dateStart.split('/');
+        dto.dateStart =  new Date(dateArr[2], dateArr[1], dateArr[0]);
       }
     }
 
     try{
-      this.createOrderUseCase.execute(dto)
+      await this.createOrderUseCase.execute(dto)
 
       response.status(201).send()
     } catch (err) {

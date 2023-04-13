@@ -10,6 +10,11 @@ export class OrderRepository implements IOrderRepository {
   ) { }
 
 
+  async findAll(): Promise<Array<Order>> {
+    return await this.orderRepository.find()
+  }
+
+
   async findById(id: string): Promise<Order> {
     return await this.orderRepository.findOneBy({
       id: id

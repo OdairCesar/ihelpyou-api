@@ -27,8 +27,8 @@ export class CreateOrderUseCase {
     } 
 
     
-    if (userCard.idUser != user.id) throw Error('Esse cartão não pertence a esse usuario');
-    if (service.idCompany != bankCompany.idCompany) throw Error('Esse banco não pertence a essa empresa');
+    if (userCard.idUser != user.id) throw new Error('Esse cartão não pertence a esse usuario');
+    if (service.idCompany != bankCompany.idCompany) throw new Error('Esse banco não pertence a essa empresa');
     
     const newOrder = new Order({
       dataStart: data.dateStart ? data.dateStart : new Date(),

@@ -12,32 +12,32 @@ import { UserRepository } from "../../../repositories/implementations/typeorm/Us
 import { CreateOrderController } from "./CreateOrderController";
 import { CreateOrderUseCase } from "./CreateOrderUseCase";
 
-const orderRepository = new OrderRepository(
+const typeormOrderRepository = new OrderRepository(
   dataSource.getRepository(OrderORM)
 )
 
-const userCardRepository = new UserCardRepository(
+const typeormUserCardRepository = new UserCardRepository(
   dataSource.getRepository(UserCardORM)
 )
 
-const userRepository = new UserRepository(
+const typeormUserRepository = new UserRepository(
   dataSource.getRepository(UserORM)
 )
 
-const serviceRepository = new ServiceRepository(
+const typeormServiceRepository = new ServiceRepository(
   dataSource.getRepository(ServiceORM)
 )
 
-const bankCompanyRepository = new BankCompanyRepository(
+const typeormBankCompanyRepository = new BankCompanyRepository(
   dataSource.getRepository(BankCompanyORM)
 )
 
 const createOrderUseCase = new CreateOrderUseCase(
-  orderRepository,
-  userCardRepository,
-  userRepository,
-  serviceRepository,
-  bankCompanyRepository
+  typeormOrderRepository,
+  typeormUserCardRepository,
+  typeormUserRepository,
+  typeormServiceRepository,
+  typeormBankCompanyRepository
 ) 
 
 const createOrderController = new CreateOrderController(

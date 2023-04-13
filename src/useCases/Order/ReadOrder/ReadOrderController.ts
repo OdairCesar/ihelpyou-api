@@ -3,7 +3,9 @@ import { ReadOrderUseCase } from "./ReadOrderUseCase";
 import { IReadOrderRequestDTO } from "./ReadOrderDTO";
 
 export class ReadOrderController {
-  constructor(private readOrderUseCase: ReadOrderUseCase) {}
+  constructor(
+    private readOrderUseCase: ReadOrderUseCase
+  ) { }
 
   async handle(request: Request, response: Response): Promise<Response> {
     const { id, sttService, sttPayment, idBankCompany, idUserCard, idUser, idService } = request.body;

@@ -31,9 +31,9 @@ export class ModifyOrderUseCase {
       const bankCompany = await this.bankCompanyRepository.findById(data.idBankCompany);
       const service = await this.serviceRepository.findById(line.idService)
 
-      if (!bankCompany) throw Error('Banco não encontrado');
+      if (!bankCompany) throw new Error('Banco não encontrado');
 
-      if (bankCompany.idCompany != service.idCompany) throw Error('Banco não pertence a essa empresa');
+      if (bankCompany.idCompany != service.idCompany) throw new Error('Banco não pertence a essa empresa');
       
       line.idBankCompany = bankCompany.id
     }
@@ -51,7 +51,7 @@ export class ModifyOrderUseCase {
 
       } else if (data.sttService == 'Concluido') {
 
-        if (line.sttPayment != 'Confirmado') throw Error('Não é possuivel concluir o serviço, pois está faltando seu pagamento');
+        if (line.sttPayment != 'Confirmado') throw new Error('Não é possuivel concluir o serviço, pois está faltando seu pagamento');
         line.sttService = data.sttService
 
       } else if (data.sttService == 'Cancelado') { 
@@ -61,7 +61,7 @@ export class ModifyOrderUseCase {
 
       } else {
 
-        throw Error('Status informato não é aceito')
+        throw new Error('Status informato não é aceito')
         
       }
     }
