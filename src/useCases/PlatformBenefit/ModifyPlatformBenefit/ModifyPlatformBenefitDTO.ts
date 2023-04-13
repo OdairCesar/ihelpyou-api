@@ -3,4 +3,5 @@ export interface IModifyPlatformBenefitRequestDTO {
   name?: string
   description?: string
   amount?: number
+  idPlan?: string
 }

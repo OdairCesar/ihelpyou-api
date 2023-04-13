@@ -19,7 +19,7 @@ export class PlatformBenefitRepository implements IPlatformBenefitRepository {
 
   async findByName(name: string): Promise<PlatformBenefit[]> {
     return await this.platformBenefitRepository.findBy({
-      name: Like(name)
+      name: Like('%'+name+'%')
     })
   }
 

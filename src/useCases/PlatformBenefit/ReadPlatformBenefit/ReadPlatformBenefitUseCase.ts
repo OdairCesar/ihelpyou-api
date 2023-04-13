@@ -8,7 +8,7 @@ export class ReadPlatformBenefitUseCase {
   ) {}
 
   async execute(data: IReadPlatformBenefitRequestDTO) {
-    let platformBenefits: PlatformBenefit[]
+    let platformBenefits: PlatformBenefit[] = []
 
     if (data.id) {
       platformBenefits.push(await this.platformBenefitRepository.findById(data.id))
@@ -20,7 +20,7 @@ export class ReadPlatformBenefitUseCase {
       platformBenefits = await this.platformBenefitRepository.findByIdPlan(data.idPlan)
     }
 
-    if (platformBenefits) return platformBenefits
+    if (platformBenefits.length > 0) return platformBenefits
 
     throw new Error('Não houve resultado nas buscas')
   }

@@ -9,10 +9,10 @@ export class ModifyPlatformBenefitController {
   ) { }
 
   async handle(request: Request, response: Response) {
-    const { name, description, amount } = request.body
+    const { name, description, amount, idPlan } = request.body
     const id = request.params.id
 
-    if (!name && !description && !amount) {
+    if (!name && !description && !amount && !idPlan) {
       response.status(400).json({
         message: "Não foi informado qual a modificação"
       })
@@ -23,9 +23,10 @@ export class ModifyPlatformBenefitController {
     if (name && typeof name === "string") dto.name = name
     if (description && typeof description === "string") dto.description = description
     if (amount && typeof amount === "number") dto.amount = amount
+    if (idPlan && typeof idPlan === "string") dto.idPlan = idPlan
 
     try{
-      this.modifyPlatformBenefitUseCase.execute(dto)
+      await this.modifyPlatformBenefitUseCase.execute(dto)
 
       response.status(201).send()
     } catch (err) {

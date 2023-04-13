@@ -9,16 +9,15 @@ export class CreatePlatformBenefitController {
   ) { }
 
   async handle(request: Request, response: Response) {
-    const { id, name, description, amount, idPlan } = request.body
+    const { name, description, amount, idPlan } = request.body
 
-    if (!id || !description || !amount || !idPlan) {
+    if (!name || !amount || !idPlan) {
       response.status(400).json({
         message: "Está faltando parametros"
       })
     }
 
     let dto: ICreatePlatformBenefitRequestDTO = { 
-      id, 
       name, 
       amount, 
       idPlan
@@ -27,7 +26,7 @@ export class CreatePlatformBenefitController {
     if (description && typeof description === 'string') dto.description = description
 
     try{
-      this.createPlatformBenefitUseCase.execute(dto)
+      await this.createPlatformBenefitUseCase.execute(dto)
 
       response.status(201).send()
     } catch (err) {

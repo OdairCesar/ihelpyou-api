@@ -10,14 +10,14 @@ export class CreatePlatformBenefitUseCase {
   ) { }
 
   async execute(data: ICreatePlatformBenefitRequestDTO) {
-    const plan = this.platformPlanRepository.findById(data.idPlan)
+    const plan = await this.platformPlanRepository.findById(data.idPlan)
 
     if (!plan) {
-      throw Error('Plano da plataforma está inválida')
+      throw new Error('Plano da plataforma está inválida')
     }
 
     const platformBenefit = new PlatformBenefit(data)
 
-    this.platformBenefitRepository.insert(platformBenefit)
+    await this.platformBenefitRepository.insert(platformBenefit)
   }
 }
