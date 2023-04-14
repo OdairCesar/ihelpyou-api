@@ -13,13 +13,8 @@ export class ModifyBankCompanyUseCase {
       throw Error('O banco informato não existe')
     }
 
-    if (data.bank) {
-      line.bank = data.bank
-    }
-
-    if (data.pix) {
-      line.pix = data.pix
-    }
+    if (data.bankHolder) line.bankHolder = data.bankHolder
+    if (data.pix) line.pix = data.pix
 
     await this.bankCompanyRepository.update(line)
   }

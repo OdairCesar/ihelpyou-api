@@ -5,8 +5,8 @@ export class BankCompany {
   public readonly id: any
   public bank: number
   public bankHolder: string
-  public cpf: number
-  public cnpj: number
+  public cpf?: number
+  public cnpj?: number
   public agency: number
   public account: number
   public pix?: string

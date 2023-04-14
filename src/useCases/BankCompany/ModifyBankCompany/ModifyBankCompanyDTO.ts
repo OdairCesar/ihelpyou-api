@@ -1,5 +1,5 @@
 export interface IModifyBankCompanyRequestDTO {
   id: string,
-  bank?: number
+  bankHolder?: string
   pix?: string
 }

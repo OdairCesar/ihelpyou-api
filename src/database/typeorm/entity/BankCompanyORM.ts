@@ -15,10 +15,10 @@ export class BankCompanyORM {
   @Column()
   bankHolder: string
 
-  @Column()
+  @Column({ type: "bigint", nullable: true })
   cpf: number
 
-  @Column()
+  @Column({ type: "bigint", nullable: true })
   cnpj: number
 
   @Column()

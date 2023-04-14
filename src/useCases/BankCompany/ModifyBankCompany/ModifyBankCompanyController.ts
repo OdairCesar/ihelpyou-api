@@ -9,10 +9,10 @@ export class ModifyBankCompanyController {
   ) { }
 
   async handle(request: Request, response: Response) {
-    const { bank, pix } = request.body
+    const { bankHolder, pix } = request.body
     const id = request.params.id
 
-    if (!bank && !pix) {
+    if (!bankHolder && !pix) {
       response.status(400).json({
         message: "Não foi informado qual a modificação"
       })
@@ -20,16 +20,11 @@ export class ModifyBankCompanyController {
 
     let dto: IModifyBankCompanyRequestDTO = { id }
 
-    if (pix) {
-      dto.pix = pix
-    }
-
-    if (bank) {
-      dto.bank = bank
-    }
+    if (pix && typeof pix === "string") dto.pix = pix;
+    if (bankHolder && typeof bankHolder === "string") dto.bankHolder = bankHolder;
 
     try{
-      this.modifyBankCompanyUseCase.execute(dto)
+      await this.modifyBankCompanyUseCase.execute(dto)
 
       response.status(201).send()
     } catch (err) {

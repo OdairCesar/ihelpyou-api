@@ -8,7 +8,7 @@ export class ReadBankCompanyController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { id, bank, pix, idCompany } = request.body;
 
-    if (!id || !bank || !pix || !idCompany) {
+    if (!id && !bank && !pix && !idCompany) {
       return response.status(400).json({
         message: "Não a parametros para a busca",
       });
@@ -16,18 +16,10 @@ export class ReadBankCompanyController {
 
     let dto: IReadBankCompanyRequestDTO = {};
 
-    if (id) {
-      dto.id = id;
-    }
-    if (bank) {
-      dto.bank = bank;
-    }
-    if (pix) {
-      dto.pix = pix;
-    }
-    if (idCompany) {
-      dto.idCompany = idCompany;
-    }
+    if (id && typeof id === "string") dto.id = id;
+    if (bank && typeof bank === "number") dto.bank = bank;
+    if (pix && typeof pix === "string") dto.pix = pix;
+    if (idCompany && typeof idCompany === "string") dto.idCompany = idCompany;
 
     try {
       const banks = await this.readBankCompanyUseCase.execute(dto);
