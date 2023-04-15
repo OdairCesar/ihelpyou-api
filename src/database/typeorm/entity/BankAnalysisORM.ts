@@ -7,19 +7,19 @@ export class BankAnalysisORM {
   @PrimaryGeneratedColumn("uuid")
   id: string
 
-  @Column({ nullable: true })
+  @Column({ type: "float", nullable: true })
   maximum: number
 
-  @Column({ nullable: true })
+  @Column({ type: "float", nullable: true })
   minimum: number
 
-  @Column({ nullable: true })
+  @Column({ type: "float", nullable: true })
   avgDay: number
 
-  @Column({ nullable: true })
+  @Column({ type: "float", nullable: true })
   avgWeek: number
 
-  @Column({ nullable: true })
+  @Column({ type: "float", nullable: true })
   avgService: number
 
   @Column()

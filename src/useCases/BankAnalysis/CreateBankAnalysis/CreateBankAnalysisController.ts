@@ -14,11 +14,7 @@ export class CreateBankAnalysisController {
       });
     }
 
-    let dto: ICreateBankAnalysisRequestDTO
-    
-    if (typeof idBank === 'string'){
-      dto.idBank = idBank
-    }
+    let dto: ICreateBankAnalysisRequestDTO = { idBank }
 
     try {
       await this.createBankAnalysisUseCase.execute(dto);

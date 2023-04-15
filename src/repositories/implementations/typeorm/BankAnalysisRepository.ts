@@ -41,10 +41,13 @@ export class BankAnalysisRepository implements IBankAnalysisRepository {
 
 
   async findByIdBankCompany(idBankCompany: string): Promise<Array<BankAnalysis>> {
-    return await this.bankAnalysisRepository.findBy({
-      idBank: {
-        id: idBankCompany
-      }
+    return await this.bankAnalysisRepository.find({
+      where: {
+        idBank: {
+          id: idBankCompany
+        }
+      },
+      relations: ["idBank"],
     })
   }
 
