@@ -28,7 +28,7 @@ export class ModifyServiceAnalysisController {
     if (purchaseCancelled && typeof purchaseCancelled === 'number') dto.purchaseCancelled = purchaseCancelled
 
     try{
-      this.modifyServiceAnalysisUseCase.execute(dto)
+      await this.modifyServiceAnalysisUseCase.execute(dto)
 
       response.status(201).send()
     } catch (err) {

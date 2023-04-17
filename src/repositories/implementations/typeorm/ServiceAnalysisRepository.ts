@@ -1,6 +1,6 @@
 import { IServiceAnalysisRepository } from "../../IServiceAnalysisRepository";
 import { ServiceAnalysis } from "../../../entities/ServiceAnalysis"
-import { LessThanOrEqual, MoreThanOrEqual, Repository } from "typeorm";
+import { Between, LessThanOrEqual, MoreThanOrEqual, Repository } from "typeorm";
 import { ServiceAnalysisORM } from "../../../database/typeorm/entity/ServiceAnalysisORM";
 
 export class ServiceAnalysisRepository implements IServiceAnalysisRepository {
@@ -13,6 +13,15 @@ export class ServiceAnalysisRepository implements IServiceAnalysisRepository {
   async findById(id: string): Promise<ServiceAnalysis> {
     return await this.serviceAnalysisRepository.findOneBy({
       id: id
+    })
+  }
+
+
+  async findByDate(date: Date): Promise<ServiceAnalysis> {
+    let dateOld = date
+    dateOld.setMonth(dateOld.getMonth() - 1)
+    return await this.serviceAnalysisRepository.findOneBy({
+      date: Between(dateOld, date)
     })
   }
   

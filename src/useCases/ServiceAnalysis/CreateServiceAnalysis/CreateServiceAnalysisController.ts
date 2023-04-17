@@ -9,27 +9,30 @@ export class CreateServiceAnalysisController {
   ) { }
 
   async handle(request: Request, response: Response) {
-    const { id, amountAvgDay, amountAvgWeek, amountAvgMonth, timeMdPerUser, views, purchaseCancelled, idService } = request.body
+    const { amountAvgDay, amountAvgWeek, amountAvgMonth, timeMdPerUser, views, purchaseCancelled, idService } = request.body
 
-    if (!id || !amountAvgDay || !amountAvgWeek || !amountAvgMonth || !timeMdPerUser || !views || !purchaseCancelled || !idService) {
+    if (!idService) {
       response.status(400).json({
         message: "Está faltando parametros"
       })
     }
 
+    const dateAnalysis = new Date()
+
     let dto: ICreateServiceAnalysisRequestDTO = { 
-      id,
-      amountAvgDay,
-      amountAvgWeek,
-      amountAvgMonth,
-      timeMdPerUser, 
-      views,
-      purchaseCancelled,
+      date: dateAnalysis,
       idService
     }
 
+    if (amountAvgDay && typeof amountAvgDay === "number") dto.amountAvgDay = amountAvgDay;
+    if (amountAvgWeek && typeof amountAvgWeek === "number") dto.amountAvgWeek = amountAvgWeek;
+    if (amountAvgMonth && typeof amountAvgMonth === "number") dto.amountAvgMonth = amountAvgMonth;
+    if (timeMdPerUser && typeof timeMdPerUser === "string") dto.timeMdPerUser = timeMdPerUser; 
+    if (views && typeof views === "number") dto.views = views;
+    if (purchaseCancelled && typeof purchaseCancelled === "number") dto.purchaseCancelled = purchaseCancelled;
+
     try{
-      this.createServiceAnalysisUseCase.execute(dto)
+      await this.createServiceAnalysisUseCase.execute(dto)
 
       response.status(201).send()
     } catch (err) {

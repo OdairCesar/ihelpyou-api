@@ -8,7 +8,7 @@ export class ReadServiceAnalysisUseCase {
   ) {}
 
   async execute(data: IReadServiceAnalysisRequestDTO) {
-    let serviceAnalysis: ServiceAnalysis[]
+    let serviceAnalysis: ServiceAnalysis[] = []
 
     if (data.id) {
       serviceAnalysis.push(await this.serviceAnalysisRepository.findById(data.id))
@@ -16,7 +16,7 @@ export class ReadServiceAnalysisUseCase {
       serviceAnalysis = await this.serviceAnalysisRepository.findByIdService(data.idService)
     } 
 
-    if (serviceAnalysis) return serviceAnalysis
+    if (serviceAnalysis.length > 0) return serviceAnalysis
 
     throw new Error('Não houve resultado nas buscas')
   }

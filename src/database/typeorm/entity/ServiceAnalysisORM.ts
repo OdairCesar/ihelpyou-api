@@ -7,23 +7,26 @@ export class ServiceAnalysisORM {
   @PrimaryGeneratedColumn("uuid")
   id: string
   
-  @Column()
+  @Column({ nullable: true })
   amountAvgDay: number
   
-  @Column()
+  @Column({ nullable: true })
   amountAvgWeek: number
   
-  @Column()
+  @Column({ nullable: true })
   amountAvgMonth: number
   
-  @Column()
+  @Column({ nullable: true })
   timeMdPerUser: string
   
-  @Column()
+  @Column({ nullable: true })
   views: number
   
-  @Column()
+  @Column({ nullable: true })
   purchaseCancelled: number
+
+  @Column()
+  date: Date
 
   @ManyToOne(type => ServiceORM, serviceAnalyzes => ServiceAnalysisORM)
   idService: ServiceORM
