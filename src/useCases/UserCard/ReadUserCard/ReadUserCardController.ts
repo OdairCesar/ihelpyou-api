@@ -6,7 +6,7 @@ export class ReadUserCardController {
   constructor(private readUserCardUseCase: ReadUserCardUseCase) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { id, idUser } = request.body;
+    const { id, idUser } = request.query;
 
     if (!id && !idUser) {
       return response.status(400).json({

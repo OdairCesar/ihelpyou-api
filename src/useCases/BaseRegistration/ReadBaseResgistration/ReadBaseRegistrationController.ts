@@ -8,7 +8,7 @@ export class ReadBaseRegistrationController {
   ) { }
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { id, idAuth, idCity } = request.body;
+    const { id, idAuth, idCity } = request.query;
 
     if (!id && !idAuth && !idCity) {
       return response.status(400).json({

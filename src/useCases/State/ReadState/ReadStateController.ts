@@ -6,7 +6,7 @@ export class ReadStateController {
   constructor(private readStateUseCase: ReadStateUseCase) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { id, name, country } = request.body;
+    const { id, name, country } = request.query;
 
     if (!id && !name && !country) {
       return response.status(400).json({

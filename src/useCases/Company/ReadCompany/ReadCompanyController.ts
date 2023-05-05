@@ -6,7 +6,7 @@ export class ReadCompanyController {
   constructor(private readCompanyUseCase: ReadCompanyUseCase) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { id, idBaseRegistration, idStatus } = request.body;
+    const { id, idBaseRegistration, idStatus } = request.query;
 
     if (!id && !idBaseRegistration && !idStatus) {
       return response.status(400).json({

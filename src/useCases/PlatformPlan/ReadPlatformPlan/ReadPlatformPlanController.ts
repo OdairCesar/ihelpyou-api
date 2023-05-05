@@ -6,13 +6,13 @@ export class ReadPlatformPlanController {
   constructor(private readPlatformPlanUseCase: ReadPlatformPlanUseCase) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { id, name, periodInMonth, value } = request.body;
+    const { id, name, periodInMonth, value } = request.query;
 
     let dto: IReadPlatformPlanRequestDTO = {};
 
     if (id && typeof id === 'string') dto.id = id; 
     if (name && typeof name === 'string') dto.name = name;
-    if (periodInMonth && typeof periodInMonth === 'number') dto.periodInMonth = periodInMonth;
+    if (periodInMonth && (typeof periodInMonth === 'number' || typeof periodInMonth === 'string')) dto.periodInMonth = parseFloat(periodInMonth);
     if (value && typeof value === 'number') dto.value = value;
 
     try {

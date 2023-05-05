@@ -6,7 +6,7 @@ export class ReadDepartmentController {
   constructor(private readDepartmentUseCase: ReadDepartmentUseCase) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { id, name } = request.body;
+    const { id, name } = request.query;
 
     let dto: IReadDepartmentRequestDTO = { };
 

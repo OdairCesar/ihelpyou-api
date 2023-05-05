@@ -6,7 +6,7 @@ export class ReadCompanyStatusController {
   constructor(private readCompanyStatusUseCase: ReadCompanyStatusUseCase) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { id, paid, restriction, dateAdmission, activated, idPlan } = request.body;
+    const { id, paid, restriction, dateAdmission, activated, idPlan } = request.query;
 
     if (!id && !paid && !restriction && !dateAdmission && !activated && !idPlan) {
       return response.status(400).json({
@@ -25,12 +25,12 @@ export class ReadCompanyStatusController {
     if (dateAdmission) {
       if (dateAdmission instanceof Date) {
         dto.dateAdmission = dateAdmission;
-      } else {
+      } else if (dateAdmission === 'string'){
         var dateArr = dateAdmission.split('/')
         dto.dateAdmission = new Date()
-        dto.dateAdmission.setFullYear(dateArr[2])
-        dto.dateAdmission.setMonth(dateArr[1] - 1)
-        dto.dateAdmission.setDate(dateArr[0])
+        dto.dateAdmission.setFullYear(parseInt(dateArr[2]))
+        dto.dateAdmission.setMonth(parseInt(dateArr[1]) - 1)
+        dto.dateAdmission.setDate(parseInt(dateArr[0]))
       }
     }
 

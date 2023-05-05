@@ -6,7 +6,7 @@ export class ReadPlatformBenefitController {
   constructor(private readPlatformBenefitUseCase: ReadPlatformBenefitUseCase) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { id, name, amount, idPlan } = request.body;
+    const { id, name, amount, idPlan } = request.query;
 
     if (!id && !name && !amount && !idPlan) {
       return response.status(400).json({
@@ -18,7 +18,7 @@ export class ReadPlatformBenefitController {
 
     if (id && typeof id === "string") dto.id = id;
     if (name && typeof name === "string") dto.name = name;
-    if (amount && typeof amount === "number") dto.amount = amount;
+    if (amount && (typeof amount === "number" || typeof amount === 'string')) dto.amount = parseInt(amount);
     if (idPlan && typeof idPlan === "string") dto.idPlan = idPlan;
 
     try {

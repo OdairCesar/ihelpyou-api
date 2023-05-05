@@ -6,7 +6,7 @@ export class ReadOrderEvaluationController {
   constructor(private readOrderEvaluationUseCase: ReadOrderEvaluationUseCase) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { id, date, amountStars, idUser, idOrder, idService } = request.body;
+    const { id, date, amountStars, idUser, idOrder, idService } = request.query;
 
     if (!id && !date && !amountStars && !idService && !idOrder && !idUser) {
       return response.status(400).json({
@@ -17,7 +17,7 @@ export class ReadOrderEvaluationController {
     let dto: IReadOrderEvaluationRequestDTO = {};
 
     if (id && typeof id === 'string') dto.id = id; 
-    if (amountStars && typeof amountStars === 'number') dto.amountStars = amountStars;
+    if (amountStars && (typeof amountStars === 'number' || typeof amountStars === 'string')) dto.amountStars = parseFloat(amountStars);
     if (idUser && typeof idUser === 'string') dto.idUser = idUser;
     if (idOrder && typeof idOrder === 'string') dto.idOrder = idOrder;
     if (idService && typeof idService === 'string') dto.idService = idService;
@@ -25,7 +25,7 @@ export class ReadOrderEvaluationController {
     if (date) {
       if (date instanceof Date) {
         dto.date = date;
-      } else {
+      } else if (typeof date === 'string'){
         dto.date= new Date(date);
       }
     }

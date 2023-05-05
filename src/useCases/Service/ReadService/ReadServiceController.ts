@@ -6,7 +6,7 @@ export class ReadServiceController {
   constructor(private readServiceUseCase: ReadServiceUseCase) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { id, name, description, minTimeInDay, maxTimeInDay, idDepartment, idCompany } = request.body;
+    const { id, name, description, minTimeInDay, maxTimeInDay, idDepartment, idCompany } = request.query;
 
     if (!id && !name && !description && !minTimeInDay && !maxTimeInDay && !idDepartment && !idCompany) {
       return response.status(400).json({
@@ -19,8 +19,8 @@ export class ReadServiceController {
     if (id && typeof id === 'string') dto.id = id;
     if (name && typeof name === 'string') dto.name = name;
     if (description && typeof description === 'string') dto.description = description;
-    if (minTimeInDay && typeof minTimeInDay === 'number') dto.minTimeInDay = minTimeInDay;
-    if (maxTimeInDay && typeof maxTimeInDay === 'number') dto.maxTimeInDay = maxTimeInDay;
+    if (minTimeInDay && (typeof minTimeInDay === 'number' || typeof minTimeInDay === 'string')) dto.minTimeInDay = parseFloat(minTimeInDay);
+    if (maxTimeInDay && (typeof maxTimeInDay === 'number' || typeof maxTimeInDay === 'string')) dto.maxTimeInDay = parseFloat(maxTimeInDay);
     if (idDepartment && typeof idDepartment === 'string') dto.idDepartment = idDepartment;
     if (idCompany && typeof idCompany === 'string') dto.idCompany = idCompany;
 

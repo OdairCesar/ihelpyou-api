@@ -6,7 +6,7 @@ export class ReadServiceAnalysisController {
   constructor(private readServiceAnalysisUseCase: ReadServiceAnalysisUseCase) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { id, idService } = request.body;
+    const { id, idService } = request.query;
 
     if (!id && !idService) {
       return response.status(400).json({

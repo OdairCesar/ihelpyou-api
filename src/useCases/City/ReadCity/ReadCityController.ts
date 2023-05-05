@@ -6,7 +6,7 @@ export class ReadCityController {
   constructor(private readCityUseCase: ReadCityUseCase) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { id, idState } = request.body;
+    const { id, idState } = request.query;
 
     if (!id && !idState) {
       return response.status(400).json({

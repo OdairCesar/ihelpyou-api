@@ -8,7 +8,7 @@ export class ReadOrderController {
   ) { }
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { id, sttService, sttPayment, idBankCompany, idUserCard, idUser, idService } = request.body;
+    const { id, sttService, sttPayment, idBankCompany, idUserCard, idUser, idService } = request.query;
 
     if (!id && !sttService && !sttPayment && !idBankCompany && !idUserCard && !idUser && !idService ) {
       return response.status(400).json({
@@ -19,8 +19,22 @@ export class ReadOrderController {
     let dto: IReadOrderRequestDTO = {};
 
     if (id && typeof id === 'string') dto.id = id;
-    if (sttService) dto.sttService = sttService;
-    if (sttPayment) dto.sttPayment = sttPayment;
+    if (sttService && typeof sttService === 'string') {
+      if (
+        sttService == "Cancelado" || 
+        sttService == "Concluido" || 
+        sttService == "Em andamento" || 
+        sttService == "Confirmado" || 
+        sttService == "Esperando Confirmação"
+      ) dto.sttService = sttService;
+    }
+    if (sttPayment && typeof sttPayment === 'string') {
+      if (
+        sttPayment == "Cancelado" || 
+        sttPayment == "Confirmado" || 
+        sttPayment == "Aguardado"
+      ) dto.sttPayment = sttPayment;
+    }
     if (idBankCompany && typeof idBankCompany === 'string') dto.idBankCompany = idBankCompany;
     if (idService && typeof idService === 'string') dto.idService = idService;
     if (idUser && typeof idUser === 'string') dto.idUser = idUser;

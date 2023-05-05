@@ -6,7 +6,7 @@ export class ReadBankCompanyController {
   constructor(private readBankCompanyUseCase: ReadBankCompanyUseCase) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { id, bank, pix, idCompany } = request.body;
+    const { id, bank, pix, idCompany } = request.query;
 
     if (!id && !bank && !pix && !idCompany) {
       return response.status(400).json({
@@ -17,7 +17,7 @@ export class ReadBankCompanyController {
     let dto: IReadBankCompanyRequestDTO = {};
 
     if (id && typeof id === "string") dto.id = id;
-    if (bank && typeof bank === "number") dto.bank = bank;
+    if (bank && (typeof bank === "number" || typeof bank === "string")) dto.bank = parseFloat(bank);
     if (pix && typeof pix === "string") dto.pix = pix;
     if (idCompany && typeof idCompany === "string") dto.idCompany = idCompany;
 

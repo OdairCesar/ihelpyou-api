@@ -6,7 +6,7 @@ export class ReadBankAnalysisController {
   constructor(private readBankAnalysisUseCase: ReadBankAnalysisUseCase) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { id, maxinum, mininum, idBank } = request.body;
+    const { id, maxinum, mininum, idBank } = request.query;
 
     if (!id && !maxinum && !mininum && !idBank) {
       return response.status(400).json({
@@ -17,8 +17,8 @@ export class ReadBankAnalysisController {
     let dto: IReadBankAnalysisRequestDTO = {};
 
     if (id && typeof id === 'string') dto.id = id;
-    if (maxinum && typeof maxinum === 'number') dto.maxinum = maxinum;
-    if (mininum && typeof mininum === 'number') dto.mininum = mininum;
+    if (maxinum && (typeof maxinum === 'number' || typeof maxinum === 'string')) dto.maxinum = parseFloat(maxinum);
+    if (mininum && (typeof mininum === 'number' || typeof mininum === 'string')) dto.mininum = parseFloat(mininum);
     if (idBank && typeof idBank === 'string') dto.idBank = idBank;
 
     try {
